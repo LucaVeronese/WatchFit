@@ -1,0 +1,32 @@
+syntax 	= "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.healthControl.CA.watchFit";
+option java_outer_classname = "HealthControlgRPCProto";
+
+service HealthControl {
+	rpc TemperatureReport (stream TemperatureLevelRequest) returns (stream TemperatureResponse) {}
+
+	rpc ExerciseZoneRateLevel (ExerciseZoneRequest) returns (stream ExerciseZoneResponse) {}
+}
+
+message TemperatureLevelRequest {
+	int32 temperature = 1;
+}
+
+message TemperatureResponse {
+	int32 belowTemperature = 1;
+	int32 averageTemperature = 2;
+	int32 aboveTemperature = 3;
+}
+
+message ExerciseZoneRequest {
+	int32 age = 1;
+	int32 restingHeartRate = 2;
+}
+
+message ExerciseZoneResponse {
+	int32 fatBurnValue = 1;
+	int32 cardioValue = 2;
+	int32 peakValue = 3;
+}

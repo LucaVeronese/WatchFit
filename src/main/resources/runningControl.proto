@@ -1,0 +1,29 @@
+syntax 	= "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.runningControl.CA.watchFit";
+option java_outer_classname = "RunningControlgRPCProto";
+
+service RunningControl {
+	rpc BurnedCalories (BurnedCaloriesRequest) returns (BurnedCaloriesResponse) {}
+
+	rpc RestHeartRate (stream RestHeartRateRequest) returns (RestHeartRateResponse) {}
+}
+
+message BurnedCaloriesRequest {
+	int32 age = 1;
+	int32 weight = 2;
+	int32 stepsTaken = 3;
+}
+
+message BurnedCaloriesResponse {
+	int32 burnedCalories = 1;
+}
+
+message RestHeartRateRequest {
+	int32 restHeartLevel = 1;
+}
+
+message RestHeartRateResponse {
+	string restHeartLevelResponse = 1;
+}
