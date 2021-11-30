@@ -49,8 +49,8 @@ public final class HealthControlgRPCProto {
       "\n\022averageTemperature\030\002 \001(\005\022\030\n\020aboveTempe" +
       "rature\030\003 \001(\005\"<\n\023ExerciseZoneRequest\022\013\n\003a" +
       "ge\030\001 \001(\005\022\030\n\020restingHeartRate\030\002 \001(\005\"T\n\024Ex" +
-      "erciseZoneResponse\022\024\n\014fatBurnValue\030\001 \001(\005" +
-      "\022\023\n\013cardioValue\030\002 \001(\005\022\021\n\tpeakValue\030\003 \001(\005" +
+      "erciseZoneResponse\022\024\n\014fatBurnValue\030\001 \001(\t" +
+      "\022\023\n\013cardioValue\030\002 \001(\t\022\021\n\tpeakValue\030\003 \001(\t" +
       "2\244\001\n\rHealthControl\022I\n\021TemperatureReport\022" +
       "\030.TemperatureLevelRequest\032\024.TemperatureR" +
       "esponse\"\000(\0010\001\022H\n\025ExerciseZoneRateLevel\022\024" +

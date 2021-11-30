@@ -8,17 +8,32 @@ public interface ExerciseZoneResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 fatBurnValue = 1;</code>
+   * <code>string fatBurnValue = 1;</code>
    */
-  int getFatBurnValue();
+  java.lang.String getFatBurnValue();
+  /**
+   * <code>string fatBurnValue = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getFatBurnValueBytes();
 
   /**
-   * <code>int32 cardioValue = 2;</code>
+   * <code>string cardioValue = 2;</code>
    */
-  int getCardioValue();
+  java.lang.String getCardioValue();
+  /**
+   * <code>string cardioValue = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getCardioValueBytes();
 
   /**
-   * <code>int32 peakValue = 3;</code>
+   * <code>string peakValue = 3;</code>
    */
-  int getPeakValue();
+  java.lang.String getPeakValue();
+  /**
+   * <code>string peakValue = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getPeakValueBytes();
 }

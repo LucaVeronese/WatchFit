@@ -21,7 +21,7 @@ public class ClientWatchFitgRPC {
 	public static void main(String[] args) {
 
 		// channel for the first Server
-		ManagedChannel channelHealthControl = ManagedChannelBuilder.forAddress("localhost", 50051).build();
+		ManagedChannel channelHealthControl = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
 
 		// here channel for second Server
 
@@ -52,11 +52,10 @@ public class ClientWatchFitgRPC {
 		Iterator<ExerciseZoneResponse> response = healthControlBlockingStub.exerciseZoneRateLevel(request);
 		
 		ExerciseZoneResponse cardioValue = response.next();
-		JOptionPane.showMessageDialog(null, "Your cardio level is: " + cardioValue.getCardioValue());
+		JOptionPane.showMessageDialog(null, "Your cardio level is between " + cardioValue.getCardioValue());
 		ExerciseZoneResponse fatBurnValue = response.next();
-		JOptionPane.showMessageDialog(null, "Your fat burn level is: " + fatBurnValue.getCardioValue());
+		JOptionPane.showMessageDialog(null, "Your fat burn level is between " + fatBurnValue.getFatBurnValue());
 		ExerciseZoneResponse peakValue = response.next();
-		JOptionPane.showMessageDialog(null, "Your peak level is: " + peakValue.getCardioValue());
+		JOptionPane.showMessageDialog(null, "Your peak level is: " + peakValue.getPeakValue());
 	}
-
 }

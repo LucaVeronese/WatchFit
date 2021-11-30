@@ -16,9 +16,9 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ExerciseZoneResponse() {
-    fatBurnValue_ = 0;
-    cardioValue_ = 0;
-    peakValue_ = 0;
+    fatBurnValue_ = "";
+    cardioValue_ = "";
+    peakValue_ = "";
   }
 
   @java.lang.Override
@@ -45,19 +45,22 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 10: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            fatBurnValue_ = input.readInt32();
+            fatBurnValue_ = s;
             break;
           }
-          case 16: {
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            cardioValue_ = input.readInt32();
+            cardioValue_ = s;
             break;
           }
-          case 24: {
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            peakValue_ = input.readInt32();
+            peakValue_ = s;
             break;
           }
           default: {
@@ -93,30 +96,105 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int FATBURNVALUE_FIELD_NUMBER = 1;
-  private int fatBurnValue_;
+  private volatile java.lang.Object fatBurnValue_;
   /**
-   * <code>int32 fatBurnValue = 1;</code>
+   * <code>string fatBurnValue = 1;</code>
    */
-  public int getFatBurnValue() {
-    return fatBurnValue_;
+  public java.lang.String getFatBurnValue() {
+    java.lang.Object ref = fatBurnValue_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      fatBurnValue_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string fatBurnValue = 1;</code>
+   */
+  public com.google.protobuf.ByteString
+      getFatBurnValueBytes() {
+    java.lang.Object ref = fatBurnValue_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      fatBurnValue_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   public static final int CARDIOVALUE_FIELD_NUMBER = 2;
-  private int cardioValue_;
+  private volatile java.lang.Object cardioValue_;
   /**
-   * <code>int32 cardioValue = 2;</code>
+   * <code>string cardioValue = 2;</code>
    */
-  public int getCardioValue() {
-    return cardioValue_;
+  public java.lang.String getCardioValue() {
+    java.lang.Object ref = cardioValue_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      cardioValue_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string cardioValue = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getCardioValueBytes() {
+    java.lang.Object ref = cardioValue_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      cardioValue_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   public static final int PEAKVALUE_FIELD_NUMBER = 3;
-  private int peakValue_;
+  private volatile java.lang.Object peakValue_;
   /**
-   * <code>int32 peakValue = 3;</code>
+   * <code>string peakValue = 3;</code>
    */
-  public int getPeakValue() {
-    return peakValue_;
+  public java.lang.String getPeakValue() {
+    java.lang.Object ref = peakValue_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      peakValue_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string peakValue = 3;</code>
+   */
+  public com.google.protobuf.ByteString
+      getPeakValueBytes() {
+    java.lang.Object ref = peakValue_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      peakValue_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -133,14 +211,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (fatBurnValue_ != 0) {
-      output.writeInt32(1, fatBurnValue_);
+    if (!getFatBurnValueBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fatBurnValue_);
     }
-    if (cardioValue_ != 0) {
-      output.writeInt32(2, cardioValue_);
+    if (!getCardioValueBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, cardioValue_);
     }
-    if (peakValue_ != 0) {
-      output.writeInt32(3, peakValue_);
+    if (!getPeakValueBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, peakValue_);
     }
     unknownFields.writeTo(output);
   }
@@ -151,17 +229,14 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (fatBurnValue_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, fatBurnValue_);
+    if (!getFatBurnValueBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fatBurnValue_);
     }
-    if (cardioValue_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, cardioValue_);
+    if (!getCardioValueBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, cardioValue_);
     }
-    if (peakValue_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, peakValue_);
+    if (!getPeakValueBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, peakValue_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -179,12 +254,12 @@ private static final long serialVersionUID = 0L;
     io.healthControl.CA.watchFit.ExerciseZoneResponse other = (io.healthControl.CA.watchFit.ExerciseZoneResponse) obj;
 
     boolean result = true;
-    result = result && (getFatBurnValue()
-        == other.getFatBurnValue());
-    result = result && (getCardioValue()
-        == other.getCardioValue());
-    result = result && (getPeakValue()
-        == other.getPeakValue());
+    result = result && getFatBurnValue()
+        .equals(other.getFatBurnValue());
+    result = result && getCardioValue()
+        .equals(other.getCardioValue());
+    result = result && getPeakValue()
+        .equals(other.getPeakValue());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -197,11 +272,11 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + FATBURNVALUE_FIELD_NUMBER;
-    hash = (53 * hash) + getFatBurnValue();
+    hash = (53 * hash) + getFatBurnValue().hashCode();
     hash = (37 * hash) + CARDIOVALUE_FIELD_NUMBER;
-    hash = (53 * hash) + getCardioValue();
+    hash = (53 * hash) + getCardioValue().hashCode();
     hash = (37 * hash) + PEAKVALUE_FIELD_NUMBER;
-    hash = (53 * hash) + getPeakValue();
+    hash = (53 * hash) + getPeakValue().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -335,11 +410,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      fatBurnValue_ = 0;
+      fatBurnValue_ = "";
 
-      cardioValue_ = 0;
+      cardioValue_ = "";
 
-      peakValue_ = 0;
+      peakValue_ = "";
 
       return this;
     }
@@ -418,14 +493,17 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.healthControl.CA.watchFit.ExerciseZoneResponse other) {
       if (other == io.healthControl.CA.watchFit.ExerciseZoneResponse.getDefaultInstance()) return this;
-      if (other.getFatBurnValue() != 0) {
-        setFatBurnValue(other.getFatBurnValue());
+      if (!other.getFatBurnValue().isEmpty()) {
+        fatBurnValue_ = other.fatBurnValue_;
+        onChanged();
       }
-      if (other.getCardioValue() != 0) {
-        setCardioValue(other.getCardioValue());
+      if (!other.getCardioValue().isEmpty()) {
+        cardioValue_ = other.cardioValue_;
+        onChanged();
       }
-      if (other.getPeakValue() != 0) {
-        setPeakValue(other.getPeakValue());
+      if (!other.getPeakValue().isEmpty()) {
+        peakValue_ = other.peakValue_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -456,80 +534,209 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int fatBurnValue_ ;
+    private java.lang.Object fatBurnValue_ = "";
     /**
-     * <code>int32 fatBurnValue = 1;</code>
+     * <code>string fatBurnValue = 1;</code>
      */
-    public int getFatBurnValue() {
-      return fatBurnValue_;
+    public java.lang.String getFatBurnValue() {
+      java.lang.Object ref = fatBurnValue_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        fatBurnValue_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>int32 fatBurnValue = 1;</code>
+     * <code>string fatBurnValue = 1;</code>
      */
-    public Builder setFatBurnValue(int value) {
-      
+    public com.google.protobuf.ByteString
+        getFatBurnValueBytes() {
+      java.lang.Object ref = fatBurnValue_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fatBurnValue_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string fatBurnValue = 1;</code>
+     */
+    public Builder setFatBurnValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       fatBurnValue_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 fatBurnValue = 1;</code>
+     * <code>string fatBurnValue = 1;</code>
      */
     public Builder clearFatBurnValue() {
       
-      fatBurnValue_ = 0;
+      fatBurnValue_ = getDefaultInstance().getFatBurnValue();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string fatBurnValue = 1;</code>
+     */
+    public Builder setFatBurnValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fatBurnValue_ = value;
       onChanged();
       return this;
     }
 
-    private int cardioValue_ ;
+    private java.lang.Object cardioValue_ = "";
     /**
-     * <code>int32 cardioValue = 2;</code>
+     * <code>string cardioValue = 2;</code>
      */
-    public int getCardioValue() {
-      return cardioValue_;
+    public java.lang.String getCardioValue() {
+      java.lang.Object ref = cardioValue_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        cardioValue_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>int32 cardioValue = 2;</code>
+     * <code>string cardioValue = 2;</code>
      */
-    public Builder setCardioValue(int value) {
-      
+    public com.google.protobuf.ByteString
+        getCardioValueBytes() {
+      java.lang.Object ref = cardioValue_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        cardioValue_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string cardioValue = 2;</code>
+     */
+    public Builder setCardioValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       cardioValue_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 cardioValue = 2;</code>
+     * <code>string cardioValue = 2;</code>
      */
     public Builder clearCardioValue() {
       
-      cardioValue_ = 0;
+      cardioValue_ = getDefaultInstance().getCardioValue();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string cardioValue = 2;</code>
+     */
+    public Builder setCardioValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      cardioValue_ = value;
       onChanged();
       return this;
     }
 
-    private int peakValue_ ;
+    private java.lang.Object peakValue_ = "";
     /**
-     * <code>int32 peakValue = 3;</code>
+     * <code>string peakValue = 3;</code>
      */
-    public int getPeakValue() {
-      return peakValue_;
+    public java.lang.String getPeakValue() {
+      java.lang.Object ref = peakValue_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        peakValue_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>int32 peakValue = 3;</code>
+     * <code>string peakValue = 3;</code>
      */
-    public Builder setPeakValue(int value) {
-      
+    public com.google.protobuf.ByteString
+        getPeakValueBytes() {
+      java.lang.Object ref = peakValue_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        peakValue_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string peakValue = 3;</code>
+     */
+    public Builder setPeakValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       peakValue_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 peakValue = 3;</code>
+     * <code>string peakValue = 3;</code>
      */
     public Builder clearPeakValue() {
       
-      peakValue_ = 0;
+      peakValue_ = getDefaultInstance().getPeakValue();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string peakValue = 3;</code>
+     */
+    public Builder setPeakValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      peakValue_ = value;
       onChanged();
       return this;
     }

@@ -26,7 +26,7 @@ message ExerciseZoneRequest {
 }
 
 message ExerciseZoneResponse {
-	int32 fatBurnValue = 1;
-	int32 cardioValue = 2;
-	int32 peakValue = 3;
+	string fatBurnValue = 1;
+	string cardioValue = 2;
+	string peakValue = 3;
 }
