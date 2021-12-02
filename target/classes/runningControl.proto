@@ -14,25 +14,13 @@ message BurnedCaloriesRequest {
 	int32 age = 1;
 	int32 weight = 2;
 	int32 height = 4;
-	enum Gender {
-		MALE = 0;
-		FEMALE = 1;
-	}
-	Gender gender = 3;
+	string gender = 3;
 	double duration = 5;
-	enum Activity{
-		SLOWWALKING = 0;
-		LEISURECYCLING = 1;
-		PILATES = 2;
-		HEAVYLIFTING = 3;
-		JOGGING = 4;
-		FASTWALKING = 5;
-	}
-	Activity activity = 6;
+	int32 activity = 6;
 }
 
 message BurnedCaloriesResponse {
-	int32 burnedCalories = 1;
+	double burnedCalories = 1;
 }
 
 message RestHeartRateRequest {

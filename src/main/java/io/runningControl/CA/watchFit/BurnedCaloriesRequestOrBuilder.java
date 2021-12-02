@@ -23,13 +23,14 @@ public interface BurnedCaloriesRequestOrBuilder extends
   int getHeight();
 
   /**
-   * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+   * <code>string gender = 3;</code>
    */
-  int getGenderValue();
+  java.lang.String getGender();
   /**
-   * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+   * <code>string gender = 3;</code>
    */
-  io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender getGender();
+  com.google.protobuf.ByteString
+      getGenderBytes();
 
   /**
    * <code>double duration = 5;</code>
@@ -37,11 +38,7 @@ public interface BurnedCaloriesRequestOrBuilder extends
   double getDuration();
 
   /**
-   * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
+   * <code>int32 activity = 6;</code>
    */
-  int getActivityValue();
-  /**
-   * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
-   */
-  io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity getActivity();
+  int getActivity();
 }

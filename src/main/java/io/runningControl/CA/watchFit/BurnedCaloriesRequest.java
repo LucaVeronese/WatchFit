@@ -19,7 +19,7 @@ private static final long serialVersionUID = 0L;
     age_ = 0;
     weight_ = 0;
     height_ = 0;
-    gender_ = 0;
+    gender_ = "";
     duration_ = 0D;
     activity_ = 0;
   }
@@ -58,10 +58,10 @@ private static final long serialVersionUID = 0L;
             weight_ = input.readInt32();
             break;
           }
-          case 24: {
-            int rawValue = input.readEnum();
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            gender_ = rawValue;
+            gender_ = s;
             break;
           }
           case 32: {
@@ -75,9 +75,8 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 48: {
-            int rawValue = input.readEnum();
 
-            activity_ = rawValue;
+            activity_ = input.readInt32();
             break;
           }
           default: {
@@ -112,238 +111,6 @@ private static final long serialVersionUID = 0L;
             io.runningControl.CA.watchFit.BurnedCaloriesRequest.class, io.runningControl.CA.watchFit.BurnedCaloriesRequest.Builder.class);
   }
 
-  /**
-   * Protobuf enum {@code BurnedCaloriesRequest.Gender}
-   */
-  public enum Gender
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>MALE = 0;</code>
-     */
-    MALE(0),
-    /**
-     * <code>FEMALE = 1;</code>
-     */
-    FEMALE(1),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>MALE = 0;</code>
-     */
-    public static final int MALE_VALUE = 0;
-    /**
-     * <code>FEMALE = 1;</code>
-     */
-    public static final int FEMALE_VALUE = 1;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static Gender valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static Gender forNumber(int value) {
-      switch (value) {
-        case 0: return MALE;
-        case 1: return FEMALE;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<Gender>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        Gender> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Gender>() {
-            public Gender findValueByNumber(int number) {
-              return Gender.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return io.runningControl.CA.watchFit.BurnedCaloriesRequest.getDescriptor().getEnumTypes().get(0);
-    }
-
-    private static final Gender[] VALUES = values();
-
-    public static Gender valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private Gender(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:BurnedCaloriesRequest.Gender)
-  }
-
-  /**
-   * Protobuf enum {@code BurnedCaloriesRequest.Activity}
-   */
-  public enum Activity
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>SLOWWALKING = 0;</code>
-     */
-    SLOWWALKING(0),
-    /**
-     * <code>LEISURECYCLING = 1;</code>
-     */
-    LEISURECYCLING(1),
-    /**
-     * <code>PILATES = 2;</code>
-     */
-    PILATES(2),
-    /**
-     * <code>HEAVYLIFTING = 3;</code>
-     */
-    HEAVYLIFTING(3),
-    /**
-     * <code>JOGGING = 4;</code>
-     */
-    JOGGING(4),
-    /**
-     * <code>FASTWALKING = 5;</code>
-     */
-    FASTWALKING(5),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>SLOWWALKING = 0;</code>
-     */
-    public static final int SLOWWALKING_VALUE = 0;
-    /**
-     * <code>LEISURECYCLING = 1;</code>
-     */
-    public static final int LEISURECYCLING_VALUE = 1;
-    /**
-     * <code>PILATES = 2;</code>
-     */
-    public static final int PILATES_VALUE = 2;
-    /**
-     * <code>HEAVYLIFTING = 3;</code>
-     */
-    public static final int HEAVYLIFTING_VALUE = 3;
-    /**
-     * <code>JOGGING = 4;</code>
-     */
-    public static final int JOGGING_VALUE = 4;
-    /**
-     * <code>FASTWALKING = 5;</code>
-     */
-    public static final int FASTWALKING_VALUE = 5;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static Activity valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static Activity forNumber(int value) {
-      switch (value) {
-        case 0: return SLOWWALKING;
-        case 1: return LEISURECYCLING;
-        case 2: return PILATES;
-        case 3: return HEAVYLIFTING;
-        case 4: return JOGGING;
-        case 5: return FASTWALKING;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<Activity>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        Activity> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Activity>() {
-            public Activity findValueByNumber(int number) {
-              return Activity.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return io.runningControl.CA.watchFit.BurnedCaloriesRequest.getDescriptor().getEnumTypes().get(1);
-    }
-
-    private static final Activity[] VALUES = values();
-
-    public static Activity valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private Activity(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:BurnedCaloriesRequest.Activity)
-  }
-
   public static final int AGE_FIELD_NUMBER = 1;
   private int age_;
   /**
@@ -372,20 +139,37 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int GENDER_FIELD_NUMBER = 3;
-  private int gender_;
+  private volatile java.lang.Object gender_;
   /**
-   * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+   * <code>string gender = 3;</code>
    */
-  public int getGenderValue() {
-    return gender_;
+  public java.lang.String getGender() {
+    java.lang.Object ref = gender_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      gender_ = s;
+      return s;
+    }
   }
   /**
-   * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+   * <code>string gender = 3;</code>
    */
-  public io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender getGender() {
-    @SuppressWarnings("deprecation")
-    io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender result = io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender.valueOf(gender_);
-    return result == null ? io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender.UNRECOGNIZED : result;
+  public com.google.protobuf.ByteString
+      getGenderBytes() {
+    java.lang.Object ref = gender_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      gender_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   public static final int DURATION_FIELD_NUMBER = 5;
@@ -400,18 +184,10 @@ private static final long serialVersionUID = 0L;
   public static final int ACTIVITY_FIELD_NUMBER = 6;
   private int activity_;
   /**
-   * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
+   * <code>int32 activity = 6;</code>
    */
-  public int getActivityValue() {
+  public int getActivity() {
     return activity_;
-  }
-  /**
-   * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
-   */
-  public io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity getActivity() {
-    @SuppressWarnings("deprecation")
-    io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity result = io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity.valueOf(activity_);
-    return result == null ? io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -434,8 +210,8 @@ private static final long serialVersionUID = 0L;
     if (weight_ != 0) {
       output.writeInt32(2, weight_);
     }
-    if (gender_ != io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender.MALE.getNumber()) {
-      output.writeEnum(3, gender_);
+    if (!getGenderBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, gender_);
     }
     if (height_ != 0) {
       output.writeInt32(4, height_);
@@ -443,8 +219,8 @@ private static final long serialVersionUID = 0L;
     if (duration_ != 0D) {
       output.writeDouble(5, duration_);
     }
-    if (activity_ != io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity.SLOWWALKING.getNumber()) {
-      output.writeEnum(6, activity_);
+    if (activity_ != 0) {
+      output.writeInt32(6, activity_);
     }
     unknownFields.writeTo(output);
   }
@@ -463,9 +239,8 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, weight_);
     }
-    if (gender_ != io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender.MALE.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(3, gender_);
+    if (!getGenderBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, gender_);
     }
     if (height_ != 0) {
       size += com.google.protobuf.CodedOutputStream
@@ -475,9 +250,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(5, duration_);
     }
-    if (activity_ != io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity.SLOWWALKING.getNumber()) {
+    if (activity_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(6, activity_);
+        .computeInt32Size(6, activity_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -501,12 +276,14 @@ private static final long serialVersionUID = 0L;
         == other.getWeight());
     result = result && (getHeight()
         == other.getHeight());
-    result = result && gender_ == other.gender_;
+    result = result && getGender()
+        .equals(other.getGender());
     result = result && (
         java.lang.Double.doubleToLongBits(getDuration())
         == java.lang.Double.doubleToLongBits(
             other.getDuration()));
-    result = result && activity_ == other.activity_;
+    result = result && (getActivity()
+        == other.getActivity());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -525,12 +302,12 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
     hash = (53 * hash) + getHeight();
     hash = (37 * hash) + GENDER_FIELD_NUMBER;
-    hash = (53 * hash) + gender_;
+    hash = (53 * hash) + getGender().hashCode();
     hash = (37 * hash) + DURATION_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getDuration()));
     hash = (37 * hash) + ACTIVITY_FIELD_NUMBER;
-    hash = (53 * hash) + activity_;
+    hash = (53 * hash) + getActivity();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -670,7 +447,7 @@ private static final long serialVersionUID = 0L;
 
       height_ = 0;
 
-      gender_ = 0;
+      gender_ = "";
 
       duration_ = 0D;
 
@@ -765,14 +542,15 @@ private static final long serialVersionUID = 0L;
       if (other.getHeight() != 0) {
         setHeight(other.getHeight());
       }
-      if (other.gender_ != 0) {
-        setGenderValue(other.getGenderValue());
+      if (!other.getGender().isEmpty()) {
+        gender_ = other.gender_;
+        onChanged();
       }
       if (other.getDuration() != 0D) {
         setDuration(other.getDuration());
       }
-      if (other.activity_ != 0) {
-        setActivityValue(other.getActivityValue());
+      if (other.getActivity() != 0) {
+        setActivity(other.getActivity());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -881,47 +659,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int gender_ = 0;
+    private java.lang.Object gender_ = "";
     /**
-     * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+     * <code>string gender = 3;</code>
      */
-    public int getGenderValue() {
-      return gender_;
+    public java.lang.String getGender() {
+      java.lang.Object ref = gender_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        gender_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+     * <code>string gender = 3;</code>
      */
-    public Builder setGenderValue(int value) {
+    public com.google.protobuf.ByteString
+        getGenderBytes() {
+      java.lang.Object ref = gender_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        gender_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string gender = 3;</code>
+     */
+    public Builder setGender(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       gender_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+     * <code>string gender = 3;</code>
      */
-    public io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender getGender() {
-      @SuppressWarnings("deprecation")
-      io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender result = io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender.valueOf(gender_);
-      return result == null ? io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
-     */
-    public Builder setGender(io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
+    public Builder clearGender() {
       
-      gender_ = value.getNumber();
+      gender_ = getDefaultInstance().getGender();
       onChanged();
       return this;
     }
     /**
-     * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+     * <code>string gender = 3;</code>
      */
-    public Builder clearGender() {
+    public Builder setGenderBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
       
-      gender_ = 0;
+      gender_ = value;
       onChanged();
       return this;
     }
@@ -952,43 +754,24 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int activity_ = 0;
+    private int activity_ ;
     /**
-     * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
+     * <code>int32 activity = 6;</code>
      */
-    public int getActivityValue() {
+    public int getActivity() {
       return activity_;
     }
     /**
-     * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
+     * <code>int32 activity = 6;</code>
      */
-    public Builder setActivityValue(int value) {
+    public Builder setActivity(int value) {
+      
       activity_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
-     */
-    public io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity getActivity() {
-      @SuppressWarnings("deprecation")
-      io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity result = io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity.valueOf(activity_);
-      return result == null ? io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
-     */
-    public Builder setActivity(io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      activity_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
+     * <code>int32 activity = 6;</code>
      */
     public Builder clearActivity() {
       

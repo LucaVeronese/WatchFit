@@ -1,5 +1,6 @@
 package clientWatchFitgRPC;
 
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +19,8 @@ import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlBlockingStub;
 import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlStub;
 import io.healthControl.CA.watchFit.TemperatureLevelRequest;
 import io.healthControl.CA.watchFit.TemperatureResponse;
+import io.runningControl.CA.watchFit.BurnedCaloriesRequest;
+import io.runningControl.CA.watchFit.BurnedCaloriesResponse;
 import io.runningControl.CA.watchFit.RunningControlGrpc;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlBlockingStub;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlStub;
@@ -140,7 +143,7 @@ public class ClientWatchFitgRPC {
 		requestObserver.onCompleted();
 	}
 
-	// unary
+	// unary - completed
 	public static void burnedCalories() {
 		int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age: "));
 		int weight = Integer.parseInt(JOptionPane.showInputDialog("Enter your weight in lbs: "));
@@ -148,5 +151,11 @@ public class ClientWatchFitgRPC {
 		String gender = JOptionPane.showInputDialog("Enter your gender (male or female): ");
 		double duration = Double.parseDouble(JOptionPane.showInputDialog("Enter the duration of your activity (in hours): "));
 		int activity = Integer.parseInt(JOptionPane.showInputDialog("Which activity did you perform? Enter the correspondent index\n1 - Slow walk\n2 - Leisure cycle\n3 - Pilates\n4 - Heavy lifting\n5 - Jogging\n6 - Fast walk"));
+		
+		BurnedCaloriesRequest request = BurnedCaloriesRequest.newBuilder().setAge(age).setWeight(weight).setHeight(height).setGender(gender).setDuration(duration).setActivity(activity).build();
+		
+		BurnedCaloriesResponse response = runningControlBlockingStub.burnedCalories(request);
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
+		JOptionPane.showMessageDialog(null, "Your caloric consuption is " + numberFormat.format(response.getBurnedCalories()));
 	}
 }

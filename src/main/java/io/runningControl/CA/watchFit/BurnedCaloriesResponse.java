@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private BurnedCaloriesResponse() {
-    burnedCalories_ = 0;
+    burnedCalories_ = 0D;
   }
 
   @java.lang.Override
@@ -43,9 +43,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 9: {
 
-            burnedCalories_ = input.readInt32();
+            burnedCalories_ = input.readDouble();
             break;
           }
           default: {
@@ -81,11 +81,11 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int BURNEDCALORIES_FIELD_NUMBER = 1;
-  private int burnedCalories_;
+  private double burnedCalories_;
   /**
-   * <code>int32 burnedCalories = 1;</code>
+   * <code>double burnedCalories = 1;</code>
    */
-  public int getBurnedCalories() {
+  public double getBurnedCalories() {
     return burnedCalories_;
   }
 
@@ -103,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (burnedCalories_ != 0) {
-      output.writeInt32(1, burnedCalories_);
+    if (burnedCalories_ != 0D) {
+      output.writeDouble(1, burnedCalories_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (burnedCalories_ != 0) {
+    if (burnedCalories_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, burnedCalories_);
+        .computeDoubleSize(1, burnedCalories_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -135,8 +135,10 @@ private static final long serialVersionUID = 0L;
     io.runningControl.CA.watchFit.BurnedCaloriesResponse other = (io.runningControl.CA.watchFit.BurnedCaloriesResponse) obj;
 
     boolean result = true;
-    result = result && (getBurnedCalories()
-        == other.getBurnedCalories());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getBurnedCalories())
+        == java.lang.Double.doubleToLongBits(
+            other.getBurnedCalories()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -149,7 +151,8 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + BURNEDCALORIES_FIELD_NUMBER;
-    hash = (53 * hash) + getBurnedCalories();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getBurnedCalories()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -283,7 +286,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      burnedCalories_ = 0;
+      burnedCalories_ = 0D;
 
       return this;
     }
@@ -360,7 +363,7 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.runningControl.CA.watchFit.BurnedCaloriesResponse other) {
       if (other == io.runningControl.CA.watchFit.BurnedCaloriesResponse.getDefaultInstance()) return this;
-      if (other.getBurnedCalories() != 0) {
+      if (other.getBurnedCalories() != 0D) {
         setBurnedCalories(other.getBurnedCalories());
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -392,28 +395,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int burnedCalories_ ;
+    private double burnedCalories_ ;
     /**
-     * <code>int32 burnedCalories = 1;</code>
+     * <code>double burnedCalories = 1;</code>
      */
-    public int getBurnedCalories() {
+    public double getBurnedCalories() {
       return burnedCalories_;
     }
     /**
-     * <code>int32 burnedCalories = 1;</code>
+     * <code>double burnedCalories = 1;</code>
      */
-    public Builder setBurnedCalories(int value) {
+    public Builder setBurnedCalories(double value) {
       
       burnedCalories_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 burnedCalories = 1;</code>
+     * <code>double burnedCalories = 1;</code>
      */
     public Builder clearBurnedCalories() {
       
-      burnedCalories_ = 0;
+      burnedCalories_ = 0D;
       onChanged();
       return this;
     }

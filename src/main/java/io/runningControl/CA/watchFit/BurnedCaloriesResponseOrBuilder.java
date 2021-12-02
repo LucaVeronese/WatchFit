@@ -8,7 +8,7 @@ public interface BurnedCaloriesResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 burnedCalories = 1;</code>
+   * <code>double burnedCalories = 1;</code>
    */
-  int getBurnedCalories();
+  double getBurnedCalories();
 }

@@ -8,6 +8,7 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlImplBase;
+import io.runningControl.CA.watchFit.BurnedCaloriesRequest;
 
 public class HealthControlServer extends HealthControlImplBase {
 
