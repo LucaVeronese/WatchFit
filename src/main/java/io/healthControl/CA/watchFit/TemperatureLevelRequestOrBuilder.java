@@ -8,7 +8,7 @@ public interface TemperatureLevelRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 temperature = 1;</code>
+   * <code>double temperature = 1;</code>
    */
-  int getTemperature();
+  double getTemperature();
 }

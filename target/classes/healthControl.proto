@@ -11,7 +11,7 @@ service HealthControl {
 }
 
 message TemperatureLevelRequest {
-	int32 temperature = 1;
+	double temperature = 1;
 }
 
 message TemperatureResponse {

@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TemperatureLevelRequest() {
-    temperature_ = 0;
+    temperature_ = 0D;
   }
 
   @java.lang.Override
@@ -43,9 +43,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 9: {
 
-            temperature_ = input.readInt32();
+            temperature_ = input.readDouble();
             break;
           }
           default: {
@@ -81,11 +81,11 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int TEMPERATURE_FIELD_NUMBER = 1;
-  private int temperature_;
+  private double temperature_;
   /**
-   * <code>int32 temperature = 1;</code>
+   * <code>double temperature = 1;</code>
    */
-  public int getTemperature() {
+  public double getTemperature() {
     return temperature_;
   }
 
@@ -103,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (temperature_ != 0) {
-      output.writeInt32(1, temperature_);
+    if (temperature_ != 0D) {
+      output.writeDouble(1, temperature_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (temperature_ != 0) {
+    if (temperature_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, temperature_);
+        .computeDoubleSize(1, temperature_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -135,8 +135,10 @@ private static final long serialVersionUID = 0L;
     io.healthControl.CA.watchFit.TemperatureLevelRequest other = (io.healthControl.CA.watchFit.TemperatureLevelRequest) obj;
 
     boolean result = true;
-    result = result && (getTemperature()
-        == other.getTemperature());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getTemperature())
+        == java.lang.Double.doubleToLongBits(
+            other.getTemperature()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -149,7 +151,8 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TEMPERATURE_FIELD_NUMBER;
-    hash = (53 * hash) + getTemperature();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getTemperature()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -283,7 +286,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      temperature_ = 0;
+      temperature_ = 0D;
 
       return this;
     }
@@ -360,7 +363,7 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.healthControl.CA.watchFit.TemperatureLevelRequest other) {
       if (other == io.healthControl.CA.watchFit.TemperatureLevelRequest.getDefaultInstance()) return this;
-      if (other.getTemperature() != 0) {
+      if (other.getTemperature() != 0D) {
         setTemperature(other.getTemperature());
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -392,28 +395,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int temperature_ ;
+    private double temperature_ ;
     /**
-     * <code>int32 temperature = 1;</code>
+     * <code>double temperature = 1;</code>
      */
-    public int getTemperature() {
+    public double getTemperature() {
       return temperature_;
     }
     /**
-     * <code>int32 temperature = 1;</code>
+     * <code>double temperature = 1;</code>
      */
-    public Builder setTemperature(int value) {
+    public Builder setTemperature(double value) {
       
       temperature_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 temperature = 1;</code>
+     * <code>double temperature = 1;</code>
      */
     public Builder clearTemperature() {
       
-      temperature_ = 0;
+      temperature_ = 0D;
       onChanged();
       return this;
     }

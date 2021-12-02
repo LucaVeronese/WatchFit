@@ -44,7 +44,7 @@ public final class HealthControlgRPCProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\023healthControl.proto\".\n\027TemperatureLeve" +
-      "lRequest\022\023\n\013temperature\030\001 \001(\005\"e\n\023Tempera" +
+      "lRequest\022\023\n\013temperature\030\001 \001(\001\"e\n\023Tempera" +
       "tureResponse\022\030\n\020belowTemperature\030\001 \001(\005\022\032" +
       "\n\022averageTemperature\030\002 \001(\005\022\030\n\020aboveTempe" +
       "rature\030\003 \001(\005\"<\n\023ExerciseZoneRequest\022\013\n\003a" +

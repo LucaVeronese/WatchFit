@@ -1,6 +1,7 @@
 package io.healthControl.CA.watchFit;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import io.grpc.ManagedChannel;
 import io.grpc.Server;
@@ -27,6 +28,7 @@ public class HealthControlServer extends HealthControlImplBase {
 		}
 	}
 
+	// server streaming - completed
 	@Override
 	public void exerciseZoneRateLevel(ExerciseZoneRequest request,
 			StreamObserver<ExerciseZoneResponse> responseObserver) {
@@ -37,24 +39,71 @@ public class HealthControlServer extends HealthControlImplBase {
 
 		double cardioValueLow = ((maximumHeartRate - restingHeartRate) * 0.5) + restingHeartRate;
 		double cardioValueHigh = ((maximumHeartRate - restingHeartRate) * 0.75) + restingHeartRate;
-		
+
 		ExerciseZoneResponse reply = ExerciseZoneResponse.newBuilder()
 				.setCardioValue(cardioValueLow + " and " + cardioValueHigh).build();
 		responseObserver.onNext(reply);
-		
+
 		double fatValueLow = ((maximumHeartRate - restingHeartRate) * 0.75) + restingHeartRate;
 		double fatValueHigh = ((maximumHeartRate - restingHeartRate) * 0.85) + restingHeartRate;
-		
-		ExerciseZoneResponse reply2 = ExerciseZoneResponse.newBuilder().setFatBurnValue(fatValueLow + " and " + fatValueHigh).build();
+
+		ExerciseZoneResponse reply2 = ExerciseZoneResponse.newBuilder()
+				.setFatBurnValue(fatValueLow + " and " + fatValueHigh).build();
 		responseObserver.onNext(reply2);
-		
+
 		double peakValueLow = ((maximumHeartRate - restingHeartRate) * 0.85) + restingHeartRate;
 		double peakValueHigh = ((maximumHeartRate - restingHeartRate) * 0.95) + restingHeartRate;
-		
-		ExerciseZoneResponse reply3 = ExerciseZoneResponse.newBuilder().setPeakValue(peakValueLow + " and " + peakValueHigh).build();
+
+		ExerciseZoneResponse reply3 = ExerciseZoneResponse.newBuilder()
+				.setPeakValue(peakValueLow + " and " + peakValueHigh).build();
 		responseObserver.onNext(reply3);
-		
+
 		responseObserver.onCompleted();
 	}
 
+	// bidirectional - GUI in Client to be fixed
+	@Override
+	public StreamObserver<TemperatureLevelRequest> temperatureReport(
+			StreamObserver<TemperatureResponse> responseObserver) {
+
+		return new StreamObserver<TemperatureLevelRequest>() {
+
+			ArrayList<Double> list = new ArrayList<>();
+			int belowTemp = 0, averageTemp = 0, aboveTemp = 0, counter = 0;
+			
+			@Override
+			public void onNext(TemperatureLevelRequest value) {				
+				
+				list.add(value.getTemperature());
+
+				if (list.size() % 2 == 0) {
+					for (int i = counter; i < list.size(); i++) {
+						if (list.get(i) >= 36.1 && list.get(i) < 37.2)
+							averageTemp++;
+						else if (list.get(i) < 36.1)
+							belowTemp++;
+						else if (list.get(i) > 37.2)
+							aboveTemp++;
+					}
+					TemperatureResponse reply = TemperatureResponse.newBuilder().setAboveTemperature(aboveTemp)
+							.setAverageTemperature(averageTemp).setBelowTemperature(belowTemp).build();
+					responseObserver.onNext(reply);
+					
+					counter = counter + 2;
+					belowTemp = averageTemp = aboveTemp = 0;
+				}
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onCompleted() {
+				responseObserver.onCompleted();
+			}
+		};
+	}
 }

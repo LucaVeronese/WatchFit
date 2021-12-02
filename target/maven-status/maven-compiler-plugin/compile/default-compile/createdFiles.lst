@@ -5,6 +5,7 @@ io\healthControl\CA\watchFit\HealthControlGrpc$HealthControlBlockingStub.class
 io\healthControl\CA\watchFit\HealthControlGrpc$HealthControlFutureStub.class
 io\healthControl\CA\watchFit\HealthControlGrpc$HealthControlBaseDescriptorSupplier.class
 io\healthControl\CA\watchFit\HealthControlGrpc$HealthControlFileDescriptorSupplier.class
+clientWatchFitgRPC\ClientWatchFitgRPC$1.class
 io\healthControl\CA\watchFit\HealthControlGrpc$MethodHandlers.class
 io\healthControl\CA\watchFit\HealthControlGrpc$1.class
 io\healthControl\CA\watchFit\HealthControlGrpc$HealthControlImplBase.class
