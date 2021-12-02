@@ -40,7 +40,7 @@ public class ClientWatchFitgRPC {
 
 
 		// bidirectional rpc
-		temperatureReport();
+		//temperatureReport();
 
 		try {
 			channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
