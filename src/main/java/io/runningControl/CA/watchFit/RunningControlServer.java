@@ -37,7 +37,7 @@ public class RunningControlServer extends RunningControlImplBase {
 		
 		if (request.getGender().toUpperCase().equals("MALE"))
 			basalMetabolicRate = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
-		else
+		else if (request.getGender().toUpperCase().equals("FEMALE"))
 			basalMetabolicRate = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
 		
 		switch(activities) {
