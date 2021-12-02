@@ -3,7 +3,10 @@ package clientWatchFitgRPC;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -44,8 +47,9 @@ public class ClientWatchFitgRPC {
 		/* server streaming
 		int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age: "));
 		int restingHeartRate = Integer.parseInt(JOptionPane.showInputDialog("Enter your resting hear rate: "));
-		exerciseZoneRateLevel(age, restingHeartRate);
+		exerciseZoneRateLevel();
 		*/
+		
 
 		/* bidirectional rpc
 		temperatureReport();
@@ -64,7 +68,10 @@ public class ClientWatchFitgRPC {
 	}
 
 	// server streaming - completed
-	public static void exerciseZoneRateLevel(int age, int restingHeartRate) {
+	public static void exerciseZoneRateLevel() {
+		int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age: "));
+		int restingHeartRate = Integer.parseInt(JOptionPane.showInputDialog("Enter your resting hear rate: "));
+		
 		ExerciseZoneRequest request = ExerciseZoneRequest.newBuilder().setAge(age).setRestingHeartRate(restingHeartRate)
 				.build();
 
@@ -135,6 +142,11 @@ public class ClientWatchFitgRPC {
 
 	// unary
 	public static void burnedCalories() {
-		
+		int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age: "));
+		int weight = Integer.parseInt(JOptionPane.showInputDialog("Enter your weight in lbs: "));
+		int height = Integer.parseInt(JOptionPane.showInputDialog("Enter your height in inches: "));
+		String gender = JOptionPane.showInputDialog("Enter your gender (male or female): ");
+		double duration = Double.parseDouble(JOptionPane.showInputDialog("Enter the duration of your activity (in hours): "));
+		int activity = Integer.parseInt(JOptionPane.showInputDialog("Which activity did you perform? Enter the correspondent index\n1 - Slow walk\n2 - Leisure cycle\n3 - Pilates\n4 - Heavy lifting\n5 - Jogging\n6 - Fast walk"));
 	}
 }

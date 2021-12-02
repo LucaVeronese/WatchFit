@@ -18,8 +18,8 @@ message BurnedCaloriesRequest {
 		MALE = 0;
 		FEMALE = 1;
 	}
-	Gender gender = 5;
-	double duration = 6;
+	Gender gender = 3;
+	double duration = 5;
 	enum Activity{
 		SLOWWALKING = 0;
 		LEISURECYCLING = 1;
@@ -28,7 +28,7 @@ message BurnedCaloriesRequest {
 		JOGGING = 4;
 		FASTWALKING = 5;
 	}
-	Activity activity = 7;
+	Activity activity = 6;
 }
 
 message BurnedCaloriesResponse {

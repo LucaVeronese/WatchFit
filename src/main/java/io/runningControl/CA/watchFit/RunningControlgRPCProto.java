@@ -43,18 +43,25 @@ public final class RunningControlgRPCProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024runningControl.proto\"H\n\025BurnedCalories" +
-      "Request\022\013\n\003age\030\001 \001(\005\022\016\n\006weight\030\002 \001(\005\022\022\n\n" +
-      "stepsTaken\030\003 \001(\005\"0\n\026BurnedCaloriesRespon" +
-      "se\022\026\n\016burnedCalories\030\001 \001(\005\".\n\024RestHeartR" +
-      "ateRequest\022\026\n\016restHeartLevel\030\001 \001(\005\"7\n\025Re" +
-      "stHeartRateResponse\022\036\n\026restHeartLevelRes" +
-      "ponse\030\001 \001(\t2\231\001\n\016RunningControl\022C\n\016Burned" +
-      "Calories\022\026.BurnedCaloriesRequest\032\027.Burne" +
-      "dCaloriesResponse\"\000\022B\n\rRestHeartRate\022\025.R" +
-      "estHeartRateRequest\032\026.RestHeartRateRespo" +
-      "nse\"\000(\001B:\n\035io.runningControl.CA.watchFit" +
-      "B\027RunningControlgRPCProtoP\001b\006proto3"
+      "\n\024runningControl.proto\"\306\002\n\025BurnedCalorie" +
+      "sRequest\022\013\n\003age\030\001 \001(\005\022\016\n\006weight\030\002 \001(\005\022\016\n" +
+      "\006height\030\004 \001(\005\022-\n\006gender\030\003 \001(\0162\035.BurnedCa" +
+      "loriesRequest.Gender\022\020\n\010duration\030\005 \001(\001\0221" +
+      "\n\010activity\030\006 \001(\0162\037.BurnedCaloriesRequest" +
+      ".Activity\"\036\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020" +
+      "\001\"l\n\010Activity\022\017\n\013SLOWWALKING\020\000\022\022\n\016LEISUR" +
+      "ECYCLING\020\001\022\013\n\007PILATES\020\002\022\020\n\014HEAVYLIFTING\020" +
+      "\003\022\013\n\007JOGGING\020\004\022\017\n\013FASTWALKING\020\005\"0\n\026Burne" +
+      "dCaloriesResponse\022\026\n\016burnedCalories\030\001 \001(" +
+      "\005\".\n\024RestHeartRateRequest\022\026\n\016restHeartLe" +
+      "vel\030\001 \001(\005\"7\n\025RestHeartRateResponse\022\036\n\026re" +
+      "stHeartLevelResponse\030\001 \001(\t2\231\001\n\016RunningCo" +
+      "ntrol\022C\n\016BurnedCalories\022\026.BurnedCalories" +
+      "Request\032\027.BurnedCaloriesResponse\"\000\022B\n\rRe" +
+      "stHeartRate\022\025.RestHeartRateRequest\032\026.Res" +
+      "tHeartRateResponse\"\000(\001B:\n\035io.runningCont" +
+      "rol.CA.watchFitB\027RunningControlgRPCProto" +
+      "P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -73,7 +80,7 @@ public final class RunningControlgRPCProto {
     internal_static_BurnedCaloriesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BurnedCaloriesRequest_descriptor,
-        new java.lang.String[] { "Age", "Weight", "StepsTaken", });
+        new java.lang.String[] { "Age", "Weight", "Height", "Gender", "Duration", "Activity", });
     internal_static_BurnedCaloriesResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_BurnedCaloriesResponse_fieldAccessorTable = new

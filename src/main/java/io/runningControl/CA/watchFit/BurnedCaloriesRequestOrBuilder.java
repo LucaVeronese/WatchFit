@@ -18,7 +18,30 @@ public interface BurnedCaloriesRequestOrBuilder extends
   int getWeight();
 
   /**
-   * <code>int32 stepsTaken = 3;</code>
+   * <code>int32 height = 4;</code>
    */
-  int getStepsTaken();
+  int getHeight();
+
+  /**
+   * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+   */
+  int getGenderValue();
+  /**
+   * <code>.BurnedCaloriesRequest.Gender gender = 3;</code>
+   */
+  io.runningControl.CA.watchFit.BurnedCaloriesRequest.Gender getGender();
+
+  /**
+   * <code>double duration = 5;</code>
+   */
+  double getDuration();
+
+  /**
+   * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
+   */
+  int getActivityValue();
+  /**
+   * <code>.BurnedCaloriesRequest.Activity activity = 6;</code>
+   */
+  io.runningControl.CA.watchFit.BurnedCaloriesRequest.Activity getActivity();
 }
