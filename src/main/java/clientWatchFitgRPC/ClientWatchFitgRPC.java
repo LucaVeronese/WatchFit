@@ -15,32 +15,45 @@ import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlBlockingStub;
 import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlStub;
 import io.healthControl.CA.watchFit.TemperatureLevelRequest;
 import io.healthControl.CA.watchFit.TemperatureResponse;
+import io.runningControl.CA.watchFit.RunningControlGrpc;
+import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlBlockingStub;
+import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlStub;
 
 public class ClientWatchFitgRPC {
 
 	private static HealthControlBlockingStub healthControlBlockingStub;
 	private static HealthControlStub healthControlStub;
+	
+	private static RunningControlBlockingStub runningControlBlockingStub;
+	private static RunningControlStub runningControlStub;
 
 	public static void main(String[] args) {
 
 		// channel for the first Server
-		ManagedChannel channelHealthControl = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext()
-				.build();
+		ManagedChannel channelHealthControl = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
 
 		// here channel for second Server
-
+		ManagedChannel channelRunningControl = ManagedChannelBuilder.forAddress("localhost", 50052).usePlaintext().build();
+		
 		healthControlBlockingStub = HealthControlGrpc.newBlockingStub(channelHealthControl);
 		healthControlStub = HealthControlGrpc.newStub(channelHealthControl);
+		
+		runningControlBlockingStub = RunningControlGrpc.newBlockingStub(channelRunningControl);
+		runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
 
-		// server streaming
-		/*int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age: "));
+		/* server streaming
+		int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age: "));
 		int restingHeartRate = Integer.parseInt(JOptionPane.showInputDialog("Enter your resting hear rate: "));
 		exerciseZoneRateLevel(age, restingHeartRate);
 		*/
 
-
-		// bidirectional rpc
-		//temperatureReport();
+		/* bidirectional rpc
+		temperatureReport();
+		*/
+		
+		// unary
+		burnedCalories();
+		
 
 		try {
 			channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
@@ -118,5 +131,10 @@ public class ClientWatchFitgRPC {
 		} while(counter < 6);
 		
 		requestObserver.onCompleted();
+	}
+
+	// unary
+	public static void burnedCalories() {
+		
 	}
 }
