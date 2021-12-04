@@ -1,6 +1,7 @@
 package io.runningControl.CA.watchFit;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -66,5 +67,37 @@ public class RunningControlServer extends RunningControlImplBase {
 		
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
+	}
+
+	// client streaming
+	@Override
+	public StreamObserver<RestHeartRateRequest> restHeartRate(StreamObserver<RestHeartRateResponse> responseObserver) {
+
+		return new StreamObserver<RestHeartRateRequest>() {
+
+			ArrayList<Double> list = new ArrayList<>();
+			
+			@Override
+			public void onNext(RestHeartRateRequest value) {
+				list.add(value.getRestHeartLevel());
+				
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onCompleted() {
+				
+				RestHeartRateResponse reply = RestHeartRateResponse.newBuilder().setRestHeartLevelResponse("Your average resting heart level is " + list.size()).build();
+				
+				responseObserver.onNext(reply);
+				
+				responseObserver.onCompleted();
+			}
+		};
 	}
 }

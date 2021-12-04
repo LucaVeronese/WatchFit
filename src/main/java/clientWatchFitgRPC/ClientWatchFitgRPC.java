@@ -159,6 +159,7 @@ public class ClientWatchFitgRPC {
 		JOptionPane.showMessageDialog(null, "Your caloric consuption is " + numberFormat.format(response.getBurnedCalories()));
 	}
 
+	// client streaming
 	public static void restHeartRate() {
 		StreamObserver<RestHeartRateResponse> responseObserver = new StreamObserver<RestHeartRateResponse>() {
 
@@ -188,5 +189,7 @@ public class ClientWatchFitgRPC {
 			heartRate = Double.parseDouble(JOptionPane.showInputDialog("Enter your resting heart rate"));
 			requestObserver.onNext(RestHeartRateRequest.newBuilder().setRestHeartLevel(heartRate).build());
 		}
+		
+		requestObserver.onCompleted();
 	}
 }
