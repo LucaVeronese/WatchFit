@@ -7,12 +7,19 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlImplBase;
+import jmDNS.ServiceRegistration;
 
 public class RunningControlServer extends RunningControlImplBase {
 
 	public static void main(String[] args) {
 		RunningControlServer runningControlServer = new RunningControlServer();
+		
+		// JmDNS integration
 		int port = 50052;
+		String serviceName = "gRPC Server";
+		String serviceType = "_grpc._tcp.local.";
+		ServiceRegistration service = new ServiceRegistration();
+		service.run(port, serviceType, serviceName);
 		
 		try {
 			Server server = ServerBuilder.forPort(port).addService(runningControlServer).build().start();
