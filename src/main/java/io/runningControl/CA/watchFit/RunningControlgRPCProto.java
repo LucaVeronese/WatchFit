@@ -49,7 +49,7 @@ public final class RunningControlgRPCProto {
       "\030\005 \001(\001\022\020\n\010activity\030\006 \001(\005\"0\n\026BurnedCalori" +
       "esResponse\022\026\n\016burnedCalories\030\001 \001(\001\".\n\024Re" +
       "stHeartRateRequest\022\026\n\016restHeartLevel\030\001 \001" +
-      "(\005\"7\n\025RestHeartRateResponse\022\036\n\026restHeart" +
+      "(\001\"7\n\025RestHeartRateResponse\022\036\n\026restHeart" +
       "LevelResponse\030\001 \001(\t2\231\001\n\016RunningControl\022C" +
       "\n\016BurnedCalories\022\026.BurnedCaloriesRequest" +
       "\032\027.BurnedCaloriesResponse\"\000\022B\n\rRestHeart" +

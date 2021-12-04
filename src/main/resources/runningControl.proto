@@ -24,7 +24,7 @@ message BurnedCaloriesResponse {
 }
 
 message RestHeartRateRequest {
-	int32 restHeartLevel = 1;
+	double restHeartLevel = 1;
 }
 
 message RestHeartRateResponse {

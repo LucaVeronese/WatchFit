@@ -8,7 +8,7 @@ public interface RestHeartRateRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 restHeartLevel = 1;</code>
+   * <code>double restHeartLevel = 1;</code>
    */
-  int getRestHeartLevel();
+  double getRestHeartLevel();
 }

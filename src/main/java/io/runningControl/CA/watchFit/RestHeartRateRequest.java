@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private RestHeartRateRequest() {
-    restHeartLevel_ = 0;
+    restHeartLevel_ = 0D;
   }
 
   @java.lang.Override
@@ -43,9 +43,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 9: {
 
-            restHeartLevel_ = input.readInt32();
+            restHeartLevel_ = input.readDouble();
             break;
           }
           default: {
@@ -81,11 +81,11 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int RESTHEARTLEVEL_FIELD_NUMBER = 1;
-  private int restHeartLevel_;
+  private double restHeartLevel_;
   /**
-   * <code>int32 restHeartLevel = 1;</code>
+   * <code>double restHeartLevel = 1;</code>
    */
-  public int getRestHeartLevel() {
+  public double getRestHeartLevel() {
     return restHeartLevel_;
   }
 
@@ -103,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (restHeartLevel_ != 0) {
-      output.writeInt32(1, restHeartLevel_);
+    if (restHeartLevel_ != 0D) {
+      output.writeDouble(1, restHeartLevel_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (restHeartLevel_ != 0) {
+    if (restHeartLevel_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, restHeartLevel_);
+        .computeDoubleSize(1, restHeartLevel_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -135,8 +135,10 @@ private static final long serialVersionUID = 0L;
     io.runningControl.CA.watchFit.RestHeartRateRequest other = (io.runningControl.CA.watchFit.RestHeartRateRequest) obj;
 
     boolean result = true;
-    result = result && (getRestHeartLevel()
-        == other.getRestHeartLevel());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getRestHeartLevel())
+        == java.lang.Double.doubleToLongBits(
+            other.getRestHeartLevel()));
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -149,7 +151,8 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + RESTHEARTLEVEL_FIELD_NUMBER;
-    hash = (53 * hash) + getRestHeartLevel();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getRestHeartLevel()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -283,7 +286,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      restHeartLevel_ = 0;
+      restHeartLevel_ = 0D;
 
       return this;
     }
@@ -360,7 +363,7 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.runningControl.CA.watchFit.RestHeartRateRequest other) {
       if (other == io.runningControl.CA.watchFit.RestHeartRateRequest.getDefaultInstance()) return this;
-      if (other.getRestHeartLevel() != 0) {
+      if (other.getRestHeartLevel() != 0D) {
         setRestHeartLevel(other.getRestHeartLevel());
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -392,28 +395,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int restHeartLevel_ ;
+    private double restHeartLevel_ ;
     /**
-     * <code>int32 restHeartLevel = 1;</code>
+     * <code>double restHeartLevel = 1;</code>
      */
-    public int getRestHeartLevel() {
+    public double getRestHeartLevel() {
       return restHeartLevel_;
     }
     /**
-     * <code>int32 restHeartLevel = 1;</code>
+     * <code>double restHeartLevel = 1;</code>
      */
-    public Builder setRestHeartLevel(int value) {
+    public Builder setRestHeartLevel(double value) {
       
       restHeartLevel_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 restHeartLevel = 1;</code>
+     * <code>double restHeartLevel = 1;</code>
      */
     public Builder clearRestHeartLevel() {
       
-      restHeartLevel_ = 0;
+      restHeartLevel_ = 0D;
       onChanged();
       return this;
     }

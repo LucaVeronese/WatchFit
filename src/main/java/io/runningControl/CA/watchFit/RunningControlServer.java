@@ -31,7 +31,7 @@ public class RunningControlServer extends RunningControlImplBase {
 		int weight = request.getWeight();
 		int height = request.getHeight();
 		int age = request.getAge();
-		double basalMetabolicRate, metabolicEquivalents = 0;
+		double basalMetabolicRate = 0, metabolicEquivalents = 0;
 		int activities = request.getActivity();
 		double burnedCalories;
 		

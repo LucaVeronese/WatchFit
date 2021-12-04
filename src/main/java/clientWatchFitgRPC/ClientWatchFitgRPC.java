@@ -4,10 +4,7 @@ import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -21,6 +18,8 @@ import io.healthControl.CA.watchFit.TemperatureLevelRequest;
 import io.healthControl.CA.watchFit.TemperatureResponse;
 import io.runningControl.CA.watchFit.BurnedCaloriesRequest;
 import io.runningControl.CA.watchFit.BurnedCaloriesResponse;
+import io.runningControl.CA.watchFit.RestHeartRateRequest;
+import io.runningControl.CA.watchFit.RestHeartRateResponse;
 import io.runningControl.CA.watchFit.RunningControlGrpc;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlBlockingStub;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlStub;
@@ -48,8 +47,6 @@ public class ClientWatchFitgRPC {
 		runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
 
 		/* server streaming
-		int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age: "));
-		int restingHeartRate = Integer.parseInt(JOptionPane.showInputDialog("Enter your resting hear rate: "));
 		exerciseZoneRateLevel();
 		*/
 		
@@ -58,10 +55,13 @@ public class ClientWatchFitgRPC {
 		temperatureReport();
 		*/
 		
-		// unary
+		/* unary
 		burnedCalories();
+		*/
 		
-
+		// client streaming
+		restHeartRate();
+		
 		try {
 			channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
@@ -157,5 +157,36 @@ public class ClientWatchFitgRPC {
 		BurnedCaloriesResponse response = runningControlBlockingStub.burnedCalories(request);
 		DecimalFormat numberFormat = new DecimalFormat("#.00");
 		JOptionPane.showMessageDialog(null, "Your caloric consuption is " + numberFormat.format(response.getBurnedCalories()));
+	}
+
+	public static void restHeartRate() {
+		StreamObserver<RestHeartRateResponse> responseObserver = new StreamObserver<RestHeartRateResponse>() {
+
+			@Override
+			public void onNext(RestHeartRateResponse value) {
+				JOptionPane.showMessageDialog(null, value.getRestHeartLevelResponse());
+				
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onCompleted() {
+				JOptionPane.showMessageDialog(null, "Application has finished...");
+			}
+		};
+		
+		StreamObserver<RestHeartRateRequest> requestObserver = runningControlStub.restHeartRate(responseObserver);
+		
+		double heartRate;
+		
+		for (int i = 0; i < 4; i++) {
+			heartRate = Double.parseDouble(JOptionPane.showInputDialog("Enter your resting heart rate"));
+			requestObserver.onNext(RestHeartRateRequest.newBuilder().setRestHeartLevel(heartRate).build());
+		}
 	}
 }
