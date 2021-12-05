@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import javax.jmdns.ServiceInfo;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import io.grpc.ManagedChannel;
@@ -33,8 +34,12 @@ public class ClientWatchFitgRPC {
 
 	private static RunningControlBlockingStub runningControlBlockingStub;
 	private static RunningControlStub runningControlStub;
+	
+	final static JDialog dialog = new JDialog();
 
 	public static void main(String[] args) {
+			
+		dialog.setAlwaysOnTop(true); 
 
 		// JmDNS implementation - Service Discovery
 		// SERVICE TYPE MUST BE DIFFERENT - NEEDS TO BE CHANGED
@@ -63,13 +68,13 @@ public class ClientWatchFitgRPC {
 
 		
 		 // server streaming 
-		exerciseZoneRateLevel();
+		//exerciseZoneRateLevel();
 		 
 		 // bidirectional
 		temperatureReport();
 		
 		 // unary 
-		burnedCalories();
+		 burnedCalories();
 		 
 
 		// client streaming
@@ -95,11 +100,11 @@ public class ClientWatchFitgRPC {
 		Iterator<ExerciseZoneResponse> response = healthControlBlockingStub.exerciseZoneRateLevel(request);
 
 		ExerciseZoneResponse cardioValue = response.next();
-		JOptionPane.showMessageDialog(null, "Your cardio level is between " + cardioValue.getCardioValue());
+		JOptionPane.showMessageDialog(dialog, "Your cardio level is between " + cardioValue.getCardioValue());
 		ExerciseZoneResponse fatBurnValue = response.next();
-		JOptionPane.showMessageDialog(null, "Your fat burn level is between " + fatBurnValue.getFatBurnValue());
+		JOptionPane.showMessageDialog(dialog, "Your fat burn level is between " + fatBurnValue.getFatBurnValue());
 		ExerciseZoneResponse peakValue = response.next();
-		JOptionPane.showMessageDialog(null, "Your peak level is: " + peakValue.getPeakValue());
+		JOptionPane.showMessageDialog(dialog, "Your peak level is: " + peakValue.getPeakValue());
 	}
 
 	// bidirectional - GUI to be fixed
@@ -109,15 +114,13 @@ public class ClientWatchFitgRPC {
 
 			@Override
 			public void onNext(TemperatureResponse value) {
-				// JOptionPane.showMessageDialog(null, "This is today's report on your
-				// temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below
-				// Temp " + value.getBelowTemperature() + "\n Above Temp " +
-				// value.getAboveTemperature());
+				JOptionPane.showMessageDialog(dialog, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());
+			
 
-				System.out.println("This is today's report on your temperature.\n Average Temp "
+	/*			System.out.println("This is today's report on your temperature.\n Average Temp "
 						+ value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature()
 						+ "\n Above Temp " + value.getAboveTemperature());
-
+		*/		 
 			}
 
 			@Override
@@ -128,7 +131,7 @@ public class ClientWatchFitgRPC {
 
 			@Override
 			public void onCompleted() {
-				JOptionPane.showMessageDialog(null, "Application has no more data to show...");
+				JOptionPane.showMessageDialog(dialog, "Application has no more data to show...");
 			}
 		};
 
@@ -139,7 +142,7 @@ public class ClientWatchFitgRPC {
 		do {
 			if (counter == 5 || counter == 10) {
 				try {
-					Thread.sleep(0);
+					Thread.sleep(8000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -149,15 +152,8 @@ public class ClientWatchFitgRPC {
 
 			requestObserver.onNext(TemperatureLevelRequest.newBuilder().setTemperature(temperature).build());
 
-			try {
-				Thread.sleep(0);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 			counter++;
-		} while (counter < 6);
+		} while (counter < 15);
 
 		requestObserver.onCompleted();
 	}
@@ -178,7 +174,7 @@ public class ClientWatchFitgRPC {
 
 		BurnedCaloriesResponse response = runningControlBlockingStub.burnedCalories(request);
 		DecimalFormat numberFormat = new DecimalFormat("#.00");
-		JOptionPane.showMessageDialog(null,
+		JOptionPane.showMessageDialog(dialog,
 				"Your caloric consuption is " + numberFormat.format(response.getBurnedCalories()));
 	}
 
@@ -188,7 +184,7 @@ public class ClientWatchFitgRPC {
 
 			@Override
 			public void onNext(RestHeartRateResponse value) {
-				JOptionPane.showMessageDialog(null, value.getRestHeartLevelResponse());
+				JOptionPane.showMessageDialog(dialog, value.getRestHeartLevelResponse());
 
 			}
 
@@ -200,7 +196,7 @@ public class ClientWatchFitgRPC {
 
 			@Override
 			public void onCompleted() {
-				JOptionPane.showMessageDialog(null, "Application has finished...");
+				JOptionPane.showMessageDialog(dialog, "Application has finished...");
 			}
 		};
 

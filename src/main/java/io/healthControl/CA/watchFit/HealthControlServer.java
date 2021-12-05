@@ -82,7 +82,7 @@ public class HealthControlServer extends HealthControlImplBase {
 				
 				list.add(value.getTemperature());
 
-				if (list.size() % 2 == 0) {
+				if (list.size() % 5 == 0) {
 					for (int i = counter; i < list.size(); i++) {
 						if (list.get(i) >= 36.1 && list.get(i) < 37.2)
 							averageTemp++;
@@ -95,7 +95,7 @@ public class HealthControlServer extends HealthControlImplBase {
 							.setAverageTemperature(averageTemp).setBelowTemperature(belowTemp).build();
 					responseObserver.onNext(reply);
 					
-					counter = counter + 2;
+					counter = counter + 5;
 					belowTemp = averageTemp = aboveTemp = 0;
 				}
 			}
