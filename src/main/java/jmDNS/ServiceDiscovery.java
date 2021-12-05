@@ -10,13 +10,15 @@ import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
 
 public class ServiceDiscovery {
+	
+	private static ServiceInfo serviceInfo;
 
 	private static class SimpleListener implements ServiceListener {
 		
 		private int port;
 		private String host;
 		private ServiceInfo serviceInfo;
-
+		
 		@Override
 		public void serviceAdded(ServiceEvent event) {
 			System.out.println("Service added " + event.getInfo());
@@ -66,7 +68,6 @@ public class ServiceDiscovery {
 	
 	public static ServiceInfo run(String serviceType) {
 		int port;
-		ServiceInfo serviceInfo = null;
 		
 		try {
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());

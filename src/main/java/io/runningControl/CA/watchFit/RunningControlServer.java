@@ -17,7 +17,7 @@ public class RunningControlServer extends RunningControlImplBase {
 		// JmDNS integration
 		int port = 50052;
 		String serviceName = "gRPC Server";
-		String serviceType = "_grpc._tcp.local.";
+		String serviceType = "_http._tcp.local.";
 		ServiceRegistration service = new ServiceRegistration();
 		service.run(port, serviceType, serviceName);
 		

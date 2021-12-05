@@ -38,15 +38,16 @@ public class ClientWatchFitgRPC {
 
 		// JmDNS implementation - Service Discovery
 		// SERVICE TYPE MUST BE DIFFERENT - NEEDS TO BE CHANGED
-		ServiceInfo serviceInfo;
+		ServiceInfo serviceInfoHealth;
+		ServiceInfo serviceInfoRunning;
 		
-		String serviceTypeHealth = "_grpc._tcp.local.";
-		serviceInfo = ServiceDiscovery.run(serviceTypeHealth);
-		int portHealthControl = serviceInfo.getPort();
+		String serviceTypeHealth = "_https._tcp.local.";
+		serviceInfoHealth = ServiceDiscovery.run(serviceTypeHealth);
+		int portHealthControl = serviceInfoHealth.getPort();
 		
-		String serviceTypeRunning = "_grpc._tcp.local.";
-		serviceInfo = ServiceDiscovery.run(serviceTypeRunning);
-		int portRunningControl = serviceInfo.getPort();
+		String serviceTypeRunning = "_http._tcp.local.";
+		serviceInfoRunning = ServiceDiscovery.run(serviceTypeRunning);
+		int portRunningControl = serviceInfoRunning.getPort();
 
 		// channel for the first Server
 		ManagedChannel channelHealthControl = ManagedChannelBuilder.forAddress("localhost", portHealthControl)
@@ -60,23 +61,23 @@ public class ClientWatchFitgRPC {
 		runningControlBlockingStub = RunningControlGrpc.newBlockingStub(channelRunningControl);
 		runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
 
-		/*
-		 * server streaming exerciseZoneRateLevel();
-		 */
-
-		/*
-		 * bidirectional rpc temperatureReport();
-		 */
-
-		/*
-		 * unary burnedCalories();
-		 */
+		
+		 // server streaming 
+		exerciseZoneRateLevel();
+		 
+		 // bidirectional
+		temperatureReport();
+		
+		 // unary 
+		burnedCalories();
+		 
 
 		// client streaming
 		restHeartRate();
 
 		try {
 			channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
+			channelRunningControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -12,7 +12,7 @@ public class ServiceRegistration {
 		try {
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 			String serviceDesc = "JmDNS integration with gRPC";
-			ServiceInfo serviceInfo = ServiceInfo.create(serviceName, serviceType, port, serviceDesc);
+			ServiceInfo serviceInfo = ServiceInfo.create(serviceType, serviceName, port, serviceDesc);
 			jmdns.registerService(serviceInfo);
 			
 			System.out.println("Registering service " + serviceType + " on port " + port);

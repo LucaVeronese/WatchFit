@@ -9,6 +9,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlImplBase;
 import io.runningControl.CA.watchFit.BurnedCaloriesRequest;
+import jmDNS.ServiceRegistration;
 
 public class HealthControlServer extends HealthControlImplBase {
 
@@ -17,6 +18,10 @@ public class HealthControlServer extends HealthControlImplBase {
 		HealthControlServer healthControlServer = new HealthControlServer();
 
 		int port = 50051;
+		String serviceName = "gRPC Server Health Control";
+		String serviceType = "_https._tcp.local.";
+		ServiceRegistration service = new ServiceRegistration();
+		service.run(port, serviceType, serviceName);
 
 		try {
 			Server server = ServerBuilder.forPort(port).addService(healthControlServer).build().start();
