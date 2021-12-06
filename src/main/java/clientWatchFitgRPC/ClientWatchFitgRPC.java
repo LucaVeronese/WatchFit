@@ -42,8 +42,7 @@ public class ClientWatchFitgRPC {
 		dialog.setAlwaysOnTop(true); 
 
 		// JmDNS implementation - Service Discovery
-		// SERVICE TYPE MUST BE DIFFERENT - NEEDS TO BE CHANGED
-		ServiceInfo serviceInfoHealth;
+		/*ServiceInfo serviceInfoHealth;
 		ServiceInfo serviceInfoRunning;
 		
 		String serviceTypeHealth = "_https._tcp.local.";
@@ -53,22 +52,22 @@ public class ClientWatchFitgRPC {
 		String serviceTypeRunning = "_http._tcp.local.";
 		serviceInfoRunning = ServiceDiscovery.run(serviceTypeRunning);
 		int portRunningControl = serviceInfoRunning.getPort();
-
+*/
 		// channel for the first Server
-		ManagedChannel channelHealthControl = ManagedChannelBuilder.forAddress("localhost", portHealthControl)
+		ManagedChannel channelHealthControl = ManagedChannelBuilder.forAddress("localhost", 50051)//portHealthControl)
 				.usePlaintext().build();
 		healthControlBlockingStub = HealthControlGrpc.newBlockingStub(channelHealthControl);
 		healthControlStub = HealthControlGrpc.newStub(channelHealthControl);
 
 		// here channel for second Server
-		ManagedChannel channelRunningControl = ManagedChannelBuilder.forAddress("localhost", portRunningControl)
+		ManagedChannel channelRunningControl = ManagedChannelBuilder.forAddress("localhost", 50052)//portRunningControl)
 				.usePlaintext().build();
 		runningControlBlockingStub = RunningControlGrpc.newBlockingStub(channelRunningControl);
 		runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
 
 		
 		 // server streaming 
-		//exerciseZoneRateLevel();
+		// exerciseZoneRateLevel();
 		 
 		 // bidirectional
 		temperatureReport();
@@ -107,25 +106,19 @@ public class ClientWatchFitgRPC {
 		JOptionPane.showMessageDialog(dialog, "Your peak level is: " + peakValue.getPeakValue());
 	}
 
-	// bidirectional - GUI to be fixed
+	// bidirectional
 	public static void temperatureReport() {
 
 		StreamObserver<TemperatureResponse> responseObserver = new StreamObserver<TemperatureResponse>() {
 
 			@Override
 			public void onNext(TemperatureResponse value) {
-				JOptionPane.showMessageDialog(dialog, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());
-			
-
-	/*			System.out.println("This is today's report on your temperature.\n Average Temp "
-						+ value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature()
-						+ "\n Above Temp " + value.getAboveTemperature());
-		*/		 
+				JOptionPane.showMessageDialog(dialog, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());		 
 			}
 
 			@Override
 			public void onError(Throwable t) {
-				// TODO Auto-generated method stub
+				System.out.println(t.getMessage());
 
 			}
 

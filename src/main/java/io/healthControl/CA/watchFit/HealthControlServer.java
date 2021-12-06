@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import io.grpc.ManagedChannel;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlImplBase;
 import io.runningControl.CA.watchFit.BurnedCaloriesRequest;
@@ -22,7 +23,7 @@ public class HealthControlServer extends HealthControlImplBase {
 		String serviceType = "_https._tcp.local.";
 		ServiceRegistration service = new ServiceRegistration();
 		service.run(port, serviceType, serviceName);
-
+		
 		try {
 			Server server = ServerBuilder.forPort(port).addService(healthControlServer).build().start();
 			System.out.println("Server running on port " + port);
@@ -67,7 +68,7 @@ public class HealthControlServer extends HealthControlImplBase {
 		responseObserver.onCompleted();
 	}
 
-	// bidirectional - GUI in Client to be fixed
+	// bidirectional
 	@Override
 	public StreamObserver<TemperatureLevelRequest> temperatureReport(
 			StreamObserver<TemperatureResponse> responseObserver) {

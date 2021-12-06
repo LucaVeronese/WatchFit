@@ -87,12 +87,11 @@ public class RunningControlServer extends RunningControlImplBase {
 			@Override
 			public void onNext(RestHeartRateRequest value) {
 				list.add(value.getRestHeartLevel());
-				
 			}
 
 			@Override
 			public void onError(Throwable t) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 
