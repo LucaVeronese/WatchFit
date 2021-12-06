@@ -37,6 +37,7 @@ import io.runningControl.CA.watchFit.RestHeartRateResponse;
 import io.runningControl.CA.watchFit.RunningControlGrpc;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlBlockingStub;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlStub;
+import jmDNS.ServiceDiscovery;
 
 
 public class ClientGUI implements ActionListener{
@@ -121,6 +122,7 @@ public class ClientGUI implements ActionListener{
 		return panel;
 
 	}
+	
 	public static void main(String[] args) {
 
 		ClientGUI gui = new ClientGUI();
@@ -167,8 +169,12 @@ public class ClientGUI implements ActionListener{
 		// server streaming
 		if (label.equals("Invoke Service 1")) {
 			System.out.println("service 1 to be invoked ...");
+			
+			String serviceTypeHealth = "_https._tcp.local.";
+			serviceInfoHealth = ServiceDiscovery.run(serviceTypeHealth);
+			int portHealthControl = serviceInfoHealth.getPort();
 
-			channelHealthControl = ManagedChannelBuilder.forAddress("localhost", 50051)//portHealthControl)
+			channelHealthControl = ManagedChannelBuilder.forAddress("localhost", portHealthControl)
 					.usePlaintext().build();
 			healthControlBlockingStub = HealthControlGrpc.newBlockingStub(channelHealthControl);
 			healthControlStub = HealthControlGrpc.newStub(channelHealthControl);
@@ -186,7 +192,11 @@ public class ClientGUI implements ActionListener{
 		}else if (label.equals("Invoke Service 2")) {
 			System.out.println("service 2 to be invoked ...");
 
-			channelHealthControl = ManagedChannelBuilder.forAddress("localhost", 50051)//portHealthControl)
+			String serviceTypeHealth = "_https._tcp.local.";
+			serviceInfoHealth = ServiceDiscovery.run(serviceTypeHealth);
+			int portHealthControl = serviceInfoHealth.getPort();
+			
+			channelHealthControl = ManagedChannelBuilder.forAddress("localhost", portHealthControl)
 					.usePlaintext().build();
 			healthControlBlockingStub = HealthControlGrpc.newBlockingStub(channelHealthControl);
 			healthControlStub = HealthControlGrpc.newStub(channelHealthControl);
@@ -204,7 +214,11 @@ public class ClientGUI implements ActionListener{
 		}else if (label.equals("Invoke Service 3")) {
 			System.out.println("service 3 to be invoked ...");
 			
-			channelRunningControl = ManagedChannelBuilder.forAddress("localhost", 50052)//portRunningControl)
+			String serviceTypeRunning = "_http._tcp.local.";
+			serviceInfoRunning = ServiceDiscovery.run(serviceTypeRunning);
+			int portRunningControl = serviceInfoRunning.getPort();
+			
+			channelRunningControl = ManagedChannelBuilder.forAddress("localhost", portRunningControl)
 					.usePlaintext().build();
 			runningControlBlockingStub = RunningControlGrpc.newBlockingStub(channelRunningControl);
 			runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
@@ -222,7 +236,11 @@ public class ClientGUI implements ActionListener{
 		}else if (label.equals("Invoke Service 4")) {
 			System.out.println("service 4 to be invoked ...");
 			
-			channelRunningControl = ManagedChannelBuilder.forAddress("localhost", 50052)//portRunningControl)
+			String serviceTypeRunning = "_http._tcp.local.";
+			serviceInfoRunning = ServiceDiscovery.run(serviceTypeRunning);
+			int portRunningControl = serviceInfoRunning.getPort();
+			
+			channelRunningControl = ManagedChannelBuilder.forAddress("localhost", portRunningControl)
 					.usePlaintext().build();
 			runningControlBlockingStub = RunningControlGrpc.newBlockingStub(channelRunningControl);
 			runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
