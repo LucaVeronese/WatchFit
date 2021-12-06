@@ -5,8 +5,11 @@ option java_package = "io.healthControl.CA.watchFit";
 option java_outer_classname = "HealthControlgRPCProto";
 
 service HealthControl {
+
+	// bidirectional rpc
 	rpc TemperatureReport (stream TemperatureLevelRequest) returns (stream TemperatureResponse) {}
 
+	// server streaming rpc
 	rpc ExerciseZoneRateLevel (ExerciseZoneRequest) returns (stream ExerciseZoneResponse) {}
 }
 

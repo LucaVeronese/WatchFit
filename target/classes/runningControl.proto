@@ -5,8 +5,11 @@ option java_package = "io.runningControl.CA.watchFit";
 option java_outer_classname = "RunningControlgRPCProto";
 
 service RunningControl {
+
+	// unary rpc
 	rpc BurnedCalories (BurnedCaloriesRequest) returns (BurnedCaloriesResponse) {}
 
+	// client streaming rpc
 	rpc RestHeartRate (stream RestHeartRateRequest) returns (RestHeartRateResponse) {}
 }
 
