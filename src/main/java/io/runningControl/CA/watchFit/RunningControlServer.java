@@ -77,4 +77,33 @@ public class RunningControlServer extends RunningControlImplBase {
 	}
 
 	// client streaming
+	@Override
+	public StreamObserver<ExerciseTimeRequest> exerciseTime(StreamObserver<ExerciseTimeResponse> responseObserver) {
+		
+		return new StreamObserver<ExerciseTimeRequest>() {
+
+			double start, end;
+			
+			@Override
+			public void onNext(ExerciseTimeRequest value) {	
+				if (value.getExerciseTimeSignal() == true)
+					start = System.currentTimeMillis();
+				else if (value.getExerciseTimeSignal() == false)
+					end = System.currentTimeMillis();
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onCompleted() {
+				ExerciseTimeResponse response = ExerciseTimeResponse.newBuilder().setExerciseTimeResponse("Congrats! You have exercised for " + (end - start)/1000 + " seconds").build();
+				responseObserver.onNext(response);
+				responseObserver.onCompleted();
+			}
+		};
+	}
 }

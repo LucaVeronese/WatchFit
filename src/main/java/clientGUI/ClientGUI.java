@@ -32,6 +32,8 @@ import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlBlockingStub;
 import io.healthControl.CA.watchFit.HealthControlGrpc.HealthControlStub;
 import io.runningControl.CA.watchFit.BurnedCaloriesRequest;
 import io.runningControl.CA.watchFit.BurnedCaloriesResponse;
+import io.runningControl.CA.watchFit.ExerciseTimeRequest;
+import io.runningControl.CA.watchFit.ExerciseTimeResponse;
 import io.runningControl.CA.watchFit.RunningControlGrpc;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlBlockingStub;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlStub;
@@ -243,6 +245,8 @@ public class ClientGUI implements ActionListener{
 			runningControlBlockingStub = RunningControlGrpc.newBlockingStub(channelRunningControl);
 			runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
 			
+			exerciseTime();
+			
 			try {
 				channelRunningControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
 			} catch (InterruptedException e1) {
@@ -337,4 +341,62 @@ public class ClientGUI implements ActionListener{
 		}
 
 	// client streaming
+	public static void exerciseTime() {
+		StreamObserver<ExerciseTimeResponse> responseObserver = new StreamObserver<ExerciseTimeResponse>() {
+
+			@Override
+			public void onNext(ExerciseTimeResponse value) {
+				JOptionPane.showMessageDialog(dialog, value.getExerciseTimeResponse());
+				
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onCompleted() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
+		StreamObserver<ExerciseTimeRequest> requestObserver = runningControlStub.exerciseTime(responseObserver);
+		
+		String answer = JOptionPane.showInputDialog("Please enter 'Start' when you want to begin your workout!");
+		if (answer.toUpperCase().equals("START")) {
+			
+			String exerciseIsOver;
+			requestObserver.onNext(ExerciseTimeRequest.newBuilder().setExerciseTimeSignal(true).build());
+			
+			do {
+				exerciseIsOver = JOptionPane.showInputDialog("Enter 'Over' when you are done");
+				if (exerciseIsOver.toUpperCase().equals("OVER"))
+				{
+					requestObserver.onNext(ExerciseTimeRequest.newBuilder().setExerciseTimeSignal(false).build());
+					requestObserver.onCompleted();
+				}
+				else
+					JOptionPane.showMessageDialog(dialog, "Wrong input...");
+			} while (!exerciseIsOver.toUpperCase().equals("OVER"));
+			
+			/*do {
+				try {
+					Thread.sleep(2500);
+				} catch (InterruptedException e) {
+					System.out.println("Exercise Time has been interrupted...");
+				}
+				
+				exerciseInProgress = JOptionPane.showInputDialog("Are you still working out? (Yes or No)");
+				if (exerciseInProgress.toUpperCase().equals("NO"))
+					break;
+				
+			} while(exerciseInProgress.toUpperCase().equals("YES"));*/
+
+		}
+		else
+			JOptionPane.showMessageDialog(dialog, "Invalid entry");
+	}
 }
