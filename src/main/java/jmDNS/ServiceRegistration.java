@@ -10,9 +10,14 @@ public class ServiceRegistration {
 	
 	public void run (int port, String serviceType, String serviceName) {
 		try {
+			// instance of jmdns
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 			String serviceDesc = "JmDNS integration with gRPC";
+			
+			// creation of serviceInfo with specified elements
 			ServiceInfo serviceInfo = ServiceInfo.create(serviceType, serviceName, port, serviceDesc);
+			
+			// jmdns is being registered. Thread.sleep is needed as this can take some time.
 			jmdns.registerService(serviceInfo);
 			
 			System.out.println("Registering service " + serviceType + " on port " + port);

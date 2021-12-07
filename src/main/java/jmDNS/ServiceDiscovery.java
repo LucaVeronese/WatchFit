@@ -38,7 +38,6 @@ public class ServiceDiscovery {
 			ServiceInfo serviceInfo = event.getInfo();
 			this.setServiceInfo(serviceInfo);
 			this.setPort(serviceInfo.getPort());
-			System.out.println("port " + serviceInfo.getPort());
 		}
 		
 		public int getPort() {
@@ -72,19 +71,20 @@ public class ServiceDiscovery {
 		try {
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 			SimpleListener listener = new SimpleListener();
+			
+			// discover the service based on the service type passed on method
 			jmdns.addServiceListener(serviceType, listener);
 			
 			Thread.sleep(10000);
 			
+			// retrieve serviceInfo that will be returned
 			serviceInfo = listener.getServiceInfo();
+			
+			// port is the info we need to run our client
 			port = listener.getPort();
 			
 			System.out.println("port from JmDNS is " + port);
 			jmdns.close();
-			
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
