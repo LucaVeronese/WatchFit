@@ -20,8 +20,6 @@ import io.healthControl.CA.watchFit.TemperatureLevelRequest;
 import io.healthControl.CA.watchFit.TemperatureResponse;
 import io.runningControl.CA.watchFit.BurnedCaloriesRequest;
 import io.runningControl.CA.watchFit.BurnedCaloriesResponse;
-import io.runningControl.CA.watchFit.RestHeartRateRequest;
-import io.runningControl.CA.watchFit.RestHeartRateResponse;
 import io.runningControl.CA.watchFit.RunningControlGrpc;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlBlockingStub;
 import io.runningControl.CA.watchFit.RunningControlGrpc.RunningControlStub;
@@ -77,7 +75,7 @@ public class ClientWatchFitgRPC {
 		 
 
 		// client streaming
-		restHeartRate();
+		// restHeartRate();
 
 		try {
 			channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
@@ -172,7 +170,7 @@ public class ClientWatchFitgRPC {
 	}
 
 	// client streaming
-	public static void restHeartRate() {
+	/*public static void restHeartRate() {
 		StreamObserver<RestHeartRateResponse> responseObserver = new StreamObserver<RestHeartRateResponse>() {
 
 			@Override
@@ -192,16 +190,5 @@ public class ClientWatchFitgRPC {
 				JOptionPane.showMessageDialog(dialog, "Application has finished...");
 			}
 		};
-
-		StreamObserver<RestHeartRateRequest> requestObserver = runningControlStub.restHeartRate(responseObserver);
-
-		double heartRate;
-
-		for (int i = 0; i < 4; i++) {
-			heartRate = Double.parseDouble(JOptionPane.showInputDialog("Enter your resting heart rate"));
-			requestObserver.onNext(RestHeartRateRequest.newBuilder().setRestHeartLevel(heartRate).build());
-		}
-
-		requestObserver.onCompleted();
-	}
+	}*/
 }

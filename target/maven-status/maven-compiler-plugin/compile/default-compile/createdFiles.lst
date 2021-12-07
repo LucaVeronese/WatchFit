@@ -1,4 +1,11 @@
+io\runningControl\CA\watchFit\ExerciseTimeRequest.class
+io\runningControl\CA\watchFit\ExerciseTimeResponse.class
+io\runningControl\CA\watchFit\ExerciseTimeRequest$Builder.class
+io\runningControl\CA\watchFit\ExerciseTimeResponse$1.class
 io\runningControl\CA\watchFit\RunningControlGrpc$1.class
 jmDNS\ServiceDiscovery$1.class
-clientWatchFitgRPC\ClientWatchFitgRPC$2.class
+io\runningControl\CA\watchFit\ExerciseTimeRequestOrBuilder.class
+io\runningControl\CA\watchFit\ExerciseTimeResponse$Builder.class
+io\runningControl\CA\watchFit\ExerciseTimeResponseOrBuilder.class
+io\runningControl\CA\watchFit\ExerciseTimeRequest$1.class
 io\healthControl\CA\watchFit\HealthControlGrpc$1.class

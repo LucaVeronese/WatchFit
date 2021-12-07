@@ -59,36 +59,36 @@ public final class RunningControlGrpc {
      return getBurnedCaloriesMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.runningControl.CA.watchFit.RestHeartRateRequest,
-      io.runningControl.CA.watchFit.RestHeartRateResponse> getRestHeartRateMethod;
+  private static volatile io.grpc.MethodDescriptor<io.runningControl.CA.watchFit.ExerciseTimeRequest,
+      io.runningControl.CA.watchFit.ExerciseTimeResponse> getExerciseTimeMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RestHeartRate",
-      requestType = io.runningControl.CA.watchFit.RestHeartRateRequest.class,
-      responseType = io.runningControl.CA.watchFit.RestHeartRateResponse.class,
+      fullMethodName = SERVICE_NAME + '/' + "ExerciseTime",
+      requestType = io.runningControl.CA.watchFit.ExerciseTimeRequest.class,
+      responseType = io.runningControl.CA.watchFit.ExerciseTimeResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-  public static io.grpc.MethodDescriptor<io.runningControl.CA.watchFit.RestHeartRateRequest,
-      io.runningControl.CA.watchFit.RestHeartRateResponse> getRestHeartRateMethod() {
-    io.grpc.MethodDescriptor<io.runningControl.CA.watchFit.RestHeartRateRequest, io.runningControl.CA.watchFit.RestHeartRateResponse> getRestHeartRateMethod;
-    if ((getRestHeartRateMethod = RunningControlGrpc.getRestHeartRateMethod) == null) {
+  public static io.grpc.MethodDescriptor<io.runningControl.CA.watchFit.ExerciseTimeRequest,
+      io.runningControl.CA.watchFit.ExerciseTimeResponse> getExerciseTimeMethod() {
+    io.grpc.MethodDescriptor<io.runningControl.CA.watchFit.ExerciseTimeRequest, io.runningControl.CA.watchFit.ExerciseTimeResponse> getExerciseTimeMethod;
+    if ((getExerciseTimeMethod = RunningControlGrpc.getExerciseTimeMethod) == null) {
       synchronized (RunningControlGrpc.class) {
-        if ((getRestHeartRateMethod = RunningControlGrpc.getRestHeartRateMethod) == null) {
-          RunningControlGrpc.getRestHeartRateMethod = getRestHeartRateMethod = 
-              io.grpc.MethodDescriptor.<io.runningControl.CA.watchFit.RestHeartRateRequest, io.runningControl.CA.watchFit.RestHeartRateResponse>newBuilder()
+        if ((getExerciseTimeMethod = RunningControlGrpc.getExerciseTimeMethod) == null) {
+          RunningControlGrpc.getExerciseTimeMethod = getExerciseTimeMethod = 
+              io.grpc.MethodDescriptor.<io.runningControl.CA.watchFit.ExerciseTimeRequest, io.runningControl.CA.watchFit.ExerciseTimeResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
               .setFullMethodName(generateFullMethodName(
-                  "RunningControl", "RestHeartRate"))
+                  "RunningControl", "ExerciseTime"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.runningControl.CA.watchFit.RestHeartRateRequest.getDefaultInstance()))
+                  io.runningControl.CA.watchFit.ExerciseTimeRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.runningControl.CA.watchFit.RestHeartRateResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new RunningControlMethodDescriptorSupplier("RestHeartRate"))
+                  io.runningControl.CA.watchFit.ExerciseTimeResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RunningControlMethodDescriptorSupplier("ExerciseTime"))
                   .build();
           }
         }
      }
-     return getRestHeartRateMethod;
+     return getExerciseTimeMethod;
   }
 
   /**
@@ -119,6 +119,9 @@ public final class RunningControlGrpc {
   public static abstract class RunningControlImplBase implements io.grpc.BindableService {
 
     /**
+     * <pre>
+     * unary rpc
+     * </pre>
      */
     public void burnedCalories(io.runningControl.CA.watchFit.BurnedCaloriesRequest request,
         io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.BurnedCaloriesResponse> responseObserver) {
@@ -126,10 +129,13 @@ public final class RunningControlGrpc {
     }
 
     /**
+     * <pre>
+     * client streaming rpc
+     * </pre>
      */
-    public io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.RestHeartRateRequest> restHeartRate(
-        io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.RestHeartRateResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getRestHeartRateMethod(), responseObserver);
+    public io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.ExerciseTimeRequest> exerciseTime(
+        io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.ExerciseTimeResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(getExerciseTimeMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -142,12 +148,12 @@ public final class RunningControlGrpc {
                 io.runningControl.CA.watchFit.BurnedCaloriesResponse>(
                   this, METHODID_BURNED_CALORIES)))
           .addMethod(
-            getRestHeartRateMethod(),
+            getExerciseTimeMethod(),
             asyncClientStreamingCall(
               new MethodHandlers<
-                io.runningControl.CA.watchFit.RestHeartRateRequest,
-                io.runningControl.CA.watchFit.RestHeartRateResponse>(
-                  this, METHODID_REST_HEART_RATE)))
+                io.runningControl.CA.watchFit.ExerciseTimeRequest,
+                io.runningControl.CA.watchFit.ExerciseTimeResponse>(
+                  this, METHODID_EXERCISE_TIME)))
           .build();
     }
   }
@@ -171,6 +177,9 @@ public final class RunningControlGrpc {
     }
 
     /**
+     * <pre>
+     * unary rpc
+     * </pre>
      */
     public void burnedCalories(io.runningControl.CA.watchFit.BurnedCaloriesRequest request,
         io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.BurnedCaloriesResponse> responseObserver) {
@@ -179,11 +188,14 @@ public final class RunningControlGrpc {
     }
 
     /**
+     * <pre>
+     * client streaming rpc
+     * </pre>
      */
-    public io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.RestHeartRateRequest> restHeartRate(
-        io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.RestHeartRateResponse> responseObserver) {
+    public io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.ExerciseTimeRequest> exerciseTime(
+        io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.ExerciseTimeResponse> responseObserver) {
       return asyncClientStreamingCall(
-          getChannel().newCall(getRestHeartRateMethod(), getCallOptions()), responseObserver);
+          getChannel().newCall(getExerciseTimeMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -206,6 +218,9 @@ public final class RunningControlGrpc {
     }
 
     /**
+     * <pre>
+     * unary rpc
+     * </pre>
      */
     public io.runningControl.CA.watchFit.BurnedCaloriesResponse burnedCalories(io.runningControl.CA.watchFit.BurnedCaloriesRequest request) {
       return blockingUnaryCall(
@@ -232,6 +247,9 @@ public final class RunningControlGrpc {
     }
 
     /**
+     * <pre>
+     * unary rpc
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<io.runningControl.CA.watchFit.BurnedCaloriesResponse> burnedCalories(
         io.runningControl.CA.watchFit.BurnedCaloriesRequest request) {
@@ -241,7 +259,7 @@ public final class RunningControlGrpc {
   }
 
   private static final int METHODID_BURNED_CALORIES = 0;
-  private static final int METHODID_REST_HEART_RATE = 1;
+  private static final int METHODID_EXERCISE_TIME = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -274,9 +292,9 @@ public final class RunningControlGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_REST_HEART_RATE:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.restHeartRate(
-              (io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.RestHeartRateResponse>) responseObserver);
+        case METHODID_EXERCISE_TIME:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.exerciseTime(
+              (io.grpc.stub.StreamObserver<io.runningControl.CA.watchFit.ExerciseTimeResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -329,7 +347,7 @@ public final class RunningControlGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new RunningControlFileDescriptorSupplier())
               .addMethod(getBurnedCaloriesMethod())
-              .addMethod(getRestHeartRateMethod())
+              .addMethod(getExerciseTimeMethod())
               .build();
         }
       }

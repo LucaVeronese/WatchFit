@@ -119,6 +119,9 @@ public final class HealthControlGrpc {
   public static abstract class HealthControlImplBase implements io.grpc.BindableService {
 
     /**
+     * <pre>
+     * bidirectional rpc
+     * </pre>
      */
     public io.grpc.stub.StreamObserver<io.healthControl.CA.watchFit.TemperatureLevelRequest> temperatureReport(
         io.grpc.stub.StreamObserver<io.healthControl.CA.watchFit.TemperatureResponse> responseObserver) {
@@ -126,6 +129,9 @@ public final class HealthControlGrpc {
     }
 
     /**
+     * <pre>
+     * server streaming rpc
+     * </pre>
      */
     public void exerciseZoneRateLevel(io.healthControl.CA.watchFit.ExerciseZoneRequest request,
         io.grpc.stub.StreamObserver<io.healthControl.CA.watchFit.ExerciseZoneResponse> responseObserver) {
@@ -171,6 +177,9 @@ public final class HealthControlGrpc {
     }
 
     /**
+     * <pre>
+     * bidirectional rpc
+     * </pre>
      */
     public io.grpc.stub.StreamObserver<io.healthControl.CA.watchFit.TemperatureLevelRequest> temperatureReport(
         io.grpc.stub.StreamObserver<io.healthControl.CA.watchFit.TemperatureResponse> responseObserver) {
@@ -179,6 +188,9 @@ public final class HealthControlGrpc {
     }
 
     /**
+     * <pre>
+     * server streaming rpc
+     * </pre>
      */
     public void exerciseZoneRateLevel(io.healthControl.CA.watchFit.ExerciseZoneRequest request,
         io.grpc.stub.StreamObserver<io.healthControl.CA.watchFit.ExerciseZoneResponse> responseObserver) {
@@ -206,6 +218,9 @@ public final class HealthControlGrpc {
     }
 
     /**
+     * <pre>
+     * server streaming rpc
+     * </pre>
      */
     public java.util.Iterator<io.healthControl.CA.watchFit.ExerciseZoneResponse> exerciseZoneRateLevel(
         io.healthControl.CA.watchFit.ExerciseZoneRequest request) {

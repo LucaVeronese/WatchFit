@@ -4,19 +4,19 @@
 package io.runningControl.CA.watchFit;
 
 /**
- * Protobuf type {@code RestHeartRateRequest}
+ * Protobuf type {@code ExerciseTimeRequest}
  */
-public  final class RestHeartRateRequest extends
+public  final class ExerciseTimeRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:RestHeartRateRequest)
-    RestHeartRateRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:ExerciseTimeRequest)
+    ExerciseTimeRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use RestHeartRateRequest.newBuilder() to construct.
-  private RestHeartRateRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use ExerciseTimeRequest.newBuilder() to construct.
+  private ExerciseTimeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private RestHeartRateRequest() {
-    restHeartLevel_ = 0D;
+  private ExerciseTimeRequest() {
+    exerciseTimeSignal_ = false;
   }
 
   @java.lang.Override
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private RestHeartRateRequest(
+  private ExerciseTimeRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -43,9 +43,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 9: {
+          case 8: {
 
-            restHeartLevel_ = input.readDouble();
+            exerciseTimeSignal_ = input.readBool();
             break;
           }
           default: {
@@ -69,24 +69,24 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_RestHeartRateRequest_descriptor;
+    return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_ExerciseTimeRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_RestHeartRateRequest_fieldAccessorTable
+    return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_ExerciseTimeRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.runningControl.CA.watchFit.RestHeartRateRequest.class, io.runningControl.CA.watchFit.RestHeartRateRequest.Builder.class);
+            io.runningControl.CA.watchFit.ExerciseTimeRequest.class, io.runningControl.CA.watchFit.ExerciseTimeRequest.Builder.class);
   }
 
-  public static final int RESTHEARTLEVEL_FIELD_NUMBER = 1;
-  private double restHeartLevel_;
+  public static final int EXERCISETIMESIGNAL_FIELD_NUMBER = 1;
+  private boolean exerciseTimeSignal_;
   /**
-   * <code>double restHeartLevel = 1;</code>
+   * <code>bool exerciseTimeSignal = 1;</code>
    */
-  public double getRestHeartLevel() {
-    return restHeartLevel_;
+  public boolean getExerciseTimeSignal() {
+    return exerciseTimeSignal_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -103,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (restHeartLevel_ != 0D) {
-      output.writeDouble(1, restHeartLevel_);
+    if (exerciseTimeSignal_ != false) {
+      output.writeBool(1, exerciseTimeSignal_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (restHeartLevel_ != 0D) {
+    if (exerciseTimeSignal_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(1, restHeartLevel_);
+        .computeBoolSize(1, exerciseTimeSignal_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -129,16 +129,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof io.runningControl.CA.watchFit.RestHeartRateRequest)) {
+    if (!(obj instanceof io.runningControl.CA.watchFit.ExerciseTimeRequest)) {
       return super.equals(obj);
     }
-    io.runningControl.CA.watchFit.RestHeartRateRequest other = (io.runningControl.CA.watchFit.RestHeartRateRequest) obj;
+    io.runningControl.CA.watchFit.ExerciseTimeRequest other = (io.runningControl.CA.watchFit.ExerciseTimeRequest) obj;
 
     boolean result = true;
-    result = result && (
-        java.lang.Double.doubleToLongBits(getRestHeartLevel())
-        == java.lang.Double.doubleToLongBits(
-            other.getRestHeartLevel()));
+    result = result && (getExerciseTimeSignal()
+        == other.getExerciseTimeSignal());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -150,77 +148,77 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + RESTHEARTLEVEL_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getRestHeartLevel()));
+    hash = (37 * hash) + EXERCISETIMESIGNAL_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getExerciseTimeSignal());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(byte[] data)
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(java.io.InputStream input)
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseDelimitedFrom(java.io.InputStream input)
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseDelimitedFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest parseFrom(
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -233,7 +231,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(io.runningControl.CA.watchFit.RestHeartRateRequest prototype) {
+  public static Builder newBuilder(io.runningControl.CA.watchFit.ExerciseTimeRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -249,26 +247,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code RestHeartRateRequest}
+   * Protobuf type {@code ExerciseTimeRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:RestHeartRateRequest)
-      io.runningControl.CA.watchFit.RestHeartRateRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:ExerciseTimeRequest)
+      io.runningControl.CA.watchFit.ExerciseTimeRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_RestHeartRateRequest_descriptor;
+      return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_ExerciseTimeRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_RestHeartRateRequest_fieldAccessorTable
+      return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_ExerciseTimeRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.runningControl.CA.watchFit.RestHeartRateRequest.class, io.runningControl.CA.watchFit.RestHeartRateRequest.Builder.class);
+              io.runningControl.CA.watchFit.ExerciseTimeRequest.class, io.runningControl.CA.watchFit.ExerciseTimeRequest.Builder.class);
     }
 
-    // Construct using io.runningControl.CA.watchFit.RestHeartRateRequest.newBuilder()
+    // Construct using io.runningControl.CA.watchFit.ExerciseTimeRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -286,7 +284,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      restHeartLevel_ = 0D;
+      exerciseTimeSignal_ = false;
 
       return this;
     }
@@ -294,17 +292,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_RestHeartRateRequest_descriptor;
+      return io.runningControl.CA.watchFit.RunningControlgRPCProto.internal_static_ExerciseTimeRequest_descriptor;
     }
 
     @java.lang.Override
-    public io.runningControl.CA.watchFit.RestHeartRateRequest getDefaultInstanceForType() {
-      return io.runningControl.CA.watchFit.RestHeartRateRequest.getDefaultInstance();
+    public io.runningControl.CA.watchFit.ExerciseTimeRequest getDefaultInstanceForType() {
+      return io.runningControl.CA.watchFit.ExerciseTimeRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public io.runningControl.CA.watchFit.RestHeartRateRequest build() {
-      io.runningControl.CA.watchFit.RestHeartRateRequest result = buildPartial();
+    public io.runningControl.CA.watchFit.ExerciseTimeRequest build() {
+      io.runningControl.CA.watchFit.ExerciseTimeRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -312,9 +310,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public io.runningControl.CA.watchFit.RestHeartRateRequest buildPartial() {
-      io.runningControl.CA.watchFit.RestHeartRateRequest result = new io.runningControl.CA.watchFit.RestHeartRateRequest(this);
-      result.restHeartLevel_ = restHeartLevel_;
+    public io.runningControl.CA.watchFit.ExerciseTimeRequest buildPartial() {
+      io.runningControl.CA.watchFit.ExerciseTimeRequest result = new io.runningControl.CA.watchFit.ExerciseTimeRequest(this);
+      result.exerciseTimeSignal_ = exerciseTimeSignal_;
       onBuilt();
       return result;
     }
@@ -353,18 +351,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.runningControl.CA.watchFit.RestHeartRateRequest) {
-        return mergeFrom((io.runningControl.CA.watchFit.RestHeartRateRequest)other);
+      if (other instanceof io.runningControl.CA.watchFit.ExerciseTimeRequest) {
+        return mergeFrom((io.runningControl.CA.watchFit.ExerciseTimeRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(io.runningControl.CA.watchFit.RestHeartRateRequest other) {
-      if (other == io.runningControl.CA.watchFit.RestHeartRateRequest.getDefaultInstance()) return this;
-      if (other.getRestHeartLevel() != 0D) {
-        setRestHeartLevel(other.getRestHeartLevel());
+    public Builder mergeFrom(io.runningControl.CA.watchFit.ExerciseTimeRequest other) {
+      if (other == io.runningControl.CA.watchFit.ExerciseTimeRequest.getDefaultInstance()) return this;
+      if (other.getExerciseTimeSignal() != false) {
+        setExerciseTimeSignal(other.getExerciseTimeSignal());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -381,11 +379,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      io.runningControl.CA.watchFit.RestHeartRateRequest parsedMessage = null;
+      io.runningControl.CA.watchFit.ExerciseTimeRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.runningControl.CA.watchFit.RestHeartRateRequest) e.getUnfinishedMessage();
+        parsedMessage = (io.runningControl.CA.watchFit.ExerciseTimeRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -395,28 +393,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private double restHeartLevel_ ;
+    private boolean exerciseTimeSignal_ ;
     /**
-     * <code>double restHeartLevel = 1;</code>
+     * <code>bool exerciseTimeSignal = 1;</code>
      */
-    public double getRestHeartLevel() {
-      return restHeartLevel_;
+    public boolean getExerciseTimeSignal() {
+      return exerciseTimeSignal_;
     }
     /**
-     * <code>double restHeartLevel = 1;</code>
+     * <code>bool exerciseTimeSignal = 1;</code>
      */
-    public Builder setRestHeartLevel(double value) {
+    public Builder setExerciseTimeSignal(boolean value) {
       
-      restHeartLevel_ = value;
+      exerciseTimeSignal_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>double restHeartLevel = 1;</code>
+     * <code>bool exerciseTimeSignal = 1;</code>
      */
-    public Builder clearRestHeartLevel() {
+    public Builder clearExerciseTimeSignal() {
       
-      restHeartLevel_ = 0D;
+      exerciseTimeSignal_ = false;
       onChanged();
       return this;
     }
@@ -433,41 +431,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:RestHeartRateRequest)
+    // @@protoc_insertion_point(builder_scope:ExerciseTimeRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:RestHeartRateRequest)
-  private static final io.runningControl.CA.watchFit.RestHeartRateRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:ExerciseTimeRequest)
+  private static final io.runningControl.CA.watchFit.ExerciseTimeRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new io.runningControl.CA.watchFit.RestHeartRateRequest();
+    DEFAULT_INSTANCE = new io.runningControl.CA.watchFit.ExerciseTimeRequest();
   }
 
-  public static io.runningControl.CA.watchFit.RestHeartRateRequest getDefaultInstance() {
+  public static io.runningControl.CA.watchFit.ExerciseTimeRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<RestHeartRateRequest>
-      PARSER = new com.google.protobuf.AbstractParser<RestHeartRateRequest>() {
+  private static final com.google.protobuf.Parser<ExerciseTimeRequest>
+      PARSER = new com.google.protobuf.AbstractParser<ExerciseTimeRequest>() {
     @java.lang.Override
-    public RestHeartRateRequest parsePartialFrom(
+    public ExerciseTimeRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new RestHeartRateRequest(input, extensionRegistry);
+      return new ExerciseTimeRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<RestHeartRateRequest> parser() {
+  public static com.google.protobuf.Parser<ExerciseTimeRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<RestHeartRateRequest> getParserForType() {
+  public com.google.protobuf.Parser<ExerciseTimeRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public io.runningControl.CA.watchFit.RestHeartRateRequest getDefaultInstanceForType() {
+  public io.runningControl.CA.watchFit.ExerciseTimeRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

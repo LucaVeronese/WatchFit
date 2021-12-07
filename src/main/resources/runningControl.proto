@@ -10,7 +10,7 @@ service RunningControl {
 	rpc BurnedCalories (BurnedCaloriesRequest) returns (BurnedCaloriesResponse) {}
 
 	// client streaming rpc
-	rpc RestHeartRate (stream RestHeartRateRequest) returns (RestHeartRateResponse) {}
+	rpc ExerciseTime (stream ExerciseTimeRequest) returns (ExerciseTimeResponse) {}
 }
 
 message BurnedCaloriesRequest {
@@ -26,10 +26,10 @@ message BurnedCaloriesResponse {
 	double burnedCalories = 1;
 }
 
-message RestHeartRateRequest {
-	double restHeartLevel = 1;
+message ExerciseTimeRequest {
+	bool exerciseTimeSignal = 1;
 }
 
-message RestHeartRateResponse {
-	string restHeartLevelResponse = 1;
+message ExerciseTimeResponse {
+	string exerciseTimeResponse = 1;
 }

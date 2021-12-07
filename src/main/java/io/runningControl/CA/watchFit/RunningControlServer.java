@@ -77,33 +77,4 @@ public class RunningControlServer extends RunningControlImplBase {
 	}
 
 	// client streaming
-	@Override
-	public StreamObserver<RestHeartRateRequest> restHeartRate(StreamObserver<RestHeartRateResponse> responseObserver) {
-
-		return new StreamObserver<RestHeartRateRequest>() {
-
-			ArrayList<Double> list = new ArrayList<>();
-			
-			@Override
-			public void onNext(RestHeartRateRequest value) {
-				list.add(value.getRestHeartLevel());
-			}
-
-			@Override
-			public void onError(Throwable t) {
-				
-				
-			}
-
-			@Override
-			public void onCompleted() {
-				
-				RestHeartRateResponse reply = RestHeartRateResponse.newBuilder().setRestHeartLevelResponse("Your average resting heart level is " + list.size()).build();
-				
-				responseObserver.onNext(reply);
-				
-				responseObserver.onCompleted();
-			}
-		};
-	}
 }

@@ -25,15 +25,15 @@ public final class RunningControlgRPCProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_BurnedCaloriesResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RestHeartRateRequest_descriptor;
+    internal_static_ExerciseTimeRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RestHeartRateRequest_fieldAccessorTable;
+      internal_static_ExerciseTimeRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RestHeartRateResponse_descriptor;
+    internal_static_ExerciseTimeResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RestHeartRateResponse_fieldAccessorTable;
+      internal_static_ExerciseTimeResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -47,16 +47,15 @@ public final class RunningControlgRPCProto {
       "Request\022\013\n\003age\030\001 \001(\005\022\016\n\006weight\030\002 \001(\005\022\016\n\006" +
       "height\030\004 \001(\005\022\016\n\006gender\030\003 \001(\t\022\020\n\010duration" +
       "\030\005 \001(\001\022\020\n\010activity\030\006 \001(\005\"0\n\026BurnedCalori" +
-      "esResponse\022\026\n\016burnedCalories\030\001 \001(\001\".\n\024Re" +
-      "stHeartRateRequest\022\026\n\016restHeartLevel\030\001 \001" +
-      "(\001\"7\n\025RestHeartRateResponse\022\036\n\026restHeart" +
-      "LevelResponse\030\001 \001(\t2\231\001\n\016RunningControl\022C" +
+      "esResponse\022\026\n\016burnedCalories\030\001 \001(\001\"1\n\023Ex" +
+      "erciseTimeRequest\022\032\n\022exerciseTimeSignal\030" +
+      "\001 \001(\010\"4\n\024ExerciseTimeResponse\022\034\n\024exercis" +
+      "eTimeResponse\030\001 \001(\t2\226\001\n\016RunningControl\022C" +
       "\n\016BurnedCalories\022\026.BurnedCaloriesRequest" +
-      "\032\027.BurnedCaloriesResponse\"\000\022B\n\rRestHeart" +
-      "Rate\022\025.RestHeartRateRequest\032\026.RestHeartR" +
-      "ateResponse\"\000(\001B:\n\035io.runningControl.CA." +
-      "watchFitB\027RunningControlgRPCProtoP\001b\006pro" +
-      "to3"
+      "\032\027.BurnedCaloriesResponse\"\000\022?\n\014ExerciseT" +
+      "ime\022\024.ExerciseTimeRequest\032\025.ExerciseTime" +
+      "Response\"\000(\001B:\n\035io.runningControl.CA.wat" +
+      "chFitB\027RunningControlgRPCProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -82,18 +81,18 @@ public final class RunningControlgRPCProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BurnedCaloriesResponse_descriptor,
         new java.lang.String[] { "BurnedCalories", });
-    internal_static_RestHeartRateRequest_descriptor =
+    internal_static_ExerciseTimeRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_RestHeartRateRequest_fieldAccessorTable = new
+    internal_static_ExerciseTimeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RestHeartRateRequest_descriptor,
-        new java.lang.String[] { "RestHeartLevel", });
-    internal_static_RestHeartRateResponse_descriptor =
+        internal_static_ExerciseTimeRequest_descriptor,
+        new java.lang.String[] { "ExerciseTimeSignal", });
+    internal_static_ExerciseTimeResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_RestHeartRateResponse_fieldAccessorTable = new
+    internal_static_ExerciseTimeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RestHeartRateResponse_descriptor,
-        new java.lang.String[] { "RestHeartLevelResponse", });
+        internal_static_ExerciseTimeResponse_descriptor,
+        new java.lang.String[] { "ExerciseTimeResponse", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
