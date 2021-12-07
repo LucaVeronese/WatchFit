@@ -14,7 +14,7 @@ public class RunningControlServer extends RunningControlImplBase {
 	public static void main(String[] args) {
 		RunningControlServer runningControlServer = new RunningControlServer();
 		
-		// JmDNS integration
+		// JmDNS integration - registering our server at the specified port and with specified name and type
 		int port = 50052;
 		String serviceName = "gRPC Server";
 		String serviceType = "_http._tcp.local.";
@@ -22,6 +22,7 @@ public class RunningControlServer extends RunningControlImplBase {
 		service.run(port, serviceType, serviceName);
 		
 		try {
+			// start the server
 			Server server = ServerBuilder.forPort(port).addService(runningControlServer).build().start();
 			System.out.println("Server running on port " + port);
 			server.awaitTermination();
@@ -48,6 +49,7 @@ public class RunningControlServer extends RunningControlImplBase {
 		else if (request.getGender().toUpperCase().equals("FEMALE"))
 			basalMetabolicRate = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
 		
+		// variable 'activities' accepts only a defined set of values
 		switch(activities) {
 		case 1:
 			metabolicEquivalents = 2.3;
@@ -70,8 +72,11 @@ public class RunningControlServer extends RunningControlImplBase {
 		}
 		
 		burnedCalories = (basalMetabolicRate * metabolicEquivalents) / 24 * request.getDuration();
+		
+		// preparing the response
 		BurnedCaloriesResponse response = BurnedCaloriesResponse.newBuilder().setBurnedCalories(burnedCalories).build();
 		
+		// sending the response
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
@@ -86,6 +91,7 @@ public class RunningControlServer extends RunningControlImplBase {
 			
 			@Override
 			public void onNext(ExerciseTimeRequest value) {	
+				// 'true' value will start our counter, 'false' will stop it
 				if (value.getExerciseTimeSignal() == true)
 					start = System.currentTimeMillis();
 				else if (value.getExerciseTimeSignal() == false)
@@ -94,7 +100,6 @@ public class RunningControlServer extends RunningControlImplBase {
 
 			@Override
 			public void onError(Throwable t) {
-				// TODO Auto-generated method stub
 				
 			}
 

@@ -18,6 +18,7 @@ public class HealthControlServer extends HealthControlImplBase {
 
 		HealthControlServer healthControlServer = new HealthControlServer();
 
+		// JmDNS integration - registering our server at the specified port and with specified name and type
 		int port = 50051;
 		String serviceName = "gRPC Server Health Control";
 		String serviceType = "_https._tcp.local.";
@@ -25,6 +26,7 @@ public class HealthControlServer extends HealthControlImplBase {
 		service.run(port, serviceType, serviceName);
 		
 		try {
+			// start the server
 			Server server = ServerBuilder.forPort(port).addService(healthControlServer).build().start();
 			System.out.println("Server running on port " + port);
 			server.awaitTermination();
@@ -44,13 +46,15 @@ public class HealthControlServer extends HealthControlImplBase {
 		int restingHeartRate = request.getRestingHeartRate();
 		int maximumHeartRate = 220 - age;
 
+		// cardio values are between 50% and 75%
 		double cardioValueLow = ((maximumHeartRate - restingHeartRate) * 0.5) + restingHeartRate;
 		double cardioValueHigh = ((maximumHeartRate - restingHeartRate) * 0.75) + restingHeartRate;
-
+		
 		ExerciseZoneResponse reply = ExerciseZoneResponse.newBuilder()
 				.setCardioValue(cardioValueLow + " and " + cardioValueHigh).build();
 		responseObserver.onNext(reply);
 
+		// fat burn values are between 75% and 85%
 		double fatValueLow = ((maximumHeartRate - restingHeartRate) * 0.75) + restingHeartRate;
 		double fatValueHigh = ((maximumHeartRate - restingHeartRate) * 0.85) + restingHeartRate;
 
@@ -58,6 +62,7 @@ public class HealthControlServer extends HealthControlImplBase {
 				.setFatBurnValue(fatValueLow + " and " + fatValueHigh).build();
 		responseObserver.onNext(reply2);
 
+		// peak values are between 85% and 95%
 		double peakValueLow = ((maximumHeartRate - restingHeartRate) * 0.85) + restingHeartRate;
 		double peakValueHigh = ((maximumHeartRate - restingHeartRate) * 0.95) + restingHeartRate;
 
@@ -83,6 +88,7 @@ public class HealthControlServer extends HealthControlImplBase {
 				
 				list.add(value.getTemperature());
 
+				// every five values, the server responds with a report considering only the last 5 entries
 				if (list.size() % 5 == 0) {
 					for (int i = counter; i < list.size(); i++) {
 						if (list.get(i) >= 36.1 && list.get(i) < 37.2)
@@ -96,6 +102,7 @@ public class HealthControlServer extends HealthControlImplBase {
 							.setAverageTemperature(averageTemp).setBelowTemperature(belowTemp).build();
 					responseObserver.onNext(reply);
 					
+					// moving the counter up to allow the report to consider only the last 5 entries
 					counter = counter + 5;
 					belowTemp = averageTemp = aboveTemp = 0;
 				}

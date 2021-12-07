@@ -14,10 +14,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import io.grpc.ManagedChannel;
@@ -170,22 +168,22 @@ public class ClientGUI implements ActionListener{
 		if (label.equals("Invoke Service 1")) {
 			System.out.println("service 1 to be invoked ...");
 			
+			// JmDNS integration - discovering the port specifying service type
 			String serviceTypeHealth = "_https._tcp.local.";
 			serviceInfoHealth = ServiceDiscovery.run(serviceTypeHealth);
-			int portHealthControl = serviceInfoHealth.getPort();
+			int portHealthControl = serviceInfoHealth.getPort(); // retrieving port
 
+			// building channel using the retrieved port
 			channelHealthControl = ManagedChannelBuilder.forAddress("localhost", portHealthControl)
 					.usePlaintext().build();
-			healthControlBlockingStub = HealthControlGrpc.newBlockingStub(channelHealthControl);
-			healthControlStub = HealthControlGrpc.newStub(channelHealthControl);
+			healthControlBlockingStub = HealthControlGrpc.newBlockingStub(channelHealthControl); //creating the stub
 			
 			exerciseZoneRateLevel();
 			
 			try {
 				channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println("Service 1 was interrupted... error occured!");
 			}
 
 		// bidirectional
@@ -198,7 +196,6 @@ public class ClientGUI implements ActionListener{
 			
 			channelHealthControl = ManagedChannelBuilder.forAddress("localhost", portHealthControl)
 					.usePlaintext().build();
-			healthControlBlockingStub = HealthControlGrpc.newBlockingStub(channelHealthControl);
 			healthControlStub = HealthControlGrpc.newStub(channelHealthControl);
 			
 			temperatureReport();
@@ -206,11 +203,10 @@ public class ClientGUI implements ActionListener{
 			try {
 				channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println("Service 2 was interrupted... error occured!");
 			}
 			
-			
+		// unary
 		}else if (label.equals("Invoke Service 3")) {
 			System.out.println("service 3 to be invoked ...");
 			
@@ -221,18 +217,16 @@ public class ClientGUI implements ActionListener{
 			channelRunningControl = ManagedChannelBuilder.forAddress("localhost", portRunningControl)
 					.usePlaintext().build();
 			runningControlBlockingStub = RunningControlGrpc.newBlockingStub(channelRunningControl);
-			runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
 			
 			burnedCalories();
 			
 			try {
 				channelRunningControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println("Service 3 was interrupted... error occured!");
 			}
 
-		
+		// client streaming
 		}else if (label.equals("Invoke Service 4")) {
 			System.out.println("service 4 to be invoked ...");
 			
@@ -242,7 +236,6 @@ public class ClientGUI implements ActionListener{
 			
 			channelRunningControl = ManagedChannelBuilder.forAddress("localhost", portRunningControl)
 					.usePlaintext().build();
-			runningControlBlockingStub = RunningControlGrpc.newBlockingStub(channelRunningControl);
 			runningControlStub = RunningControlGrpc.newStub(channelRunningControl);
 			
 			exerciseTime();
@@ -250,8 +243,7 @@ public class ClientGUI implements ActionListener{
 			try {
 				channelRunningControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println("Service 4 was interrupted... error occured!");
 			}
 		
 		}
@@ -262,11 +254,14 @@ public class ClientGUI implements ActionListener{
 		int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age: "));
 		int restingHeartRate = Integer.parseInt(JOptionPane.showInputDialog("Enter your resting hear rate: "));
 
+		// request is sent as a unique message containing two information
 		ExerciseZoneRequest request = ExerciseZoneRequest.newBuilder().setAge(age).setRestingHeartRate(restingHeartRate)
 				.build();
 
+		// response is collected as an Iterator
 		Iterator<ExerciseZoneResponse> response = healthControlBlockingStub.exerciseZoneRateLevel(request);
 
+		// reading content using .next() method
 		ExerciseZoneResponse cardioValue = response.next();
 		JOptionPane.showMessageDialog(dialog, "Your cardio level is between " + cardioValue.getCardioValue());
 		ExerciseZoneResponse fatBurnValue = response.next();
@@ -299,9 +294,10 @@ public class ClientGUI implements ActionListener{
 
 			StreamObserver<TemperatureLevelRequest> requestObserver = healthControlStub.temperatureReport(responseObserver);
 
-			// application will run 15 times only
+			// application will run 15 times
 			int counter = 0;
 			do {
+				// we wait to allow the user to read the report
 				if (counter == 5 || counter == 10) {
 					try {
 						Thread.sleep(8000);
@@ -331,10 +327,14 @@ public class ClientGUI implements ActionListener{
 			int activity = Integer.parseInt(JOptionPane.showInputDialog(
 					"Which activity did you perform? Enter the correspondent index\n1 - Slow walk\n2 - Leisure cycle\n3 - Pilates\n4 - Heavy lifting\n5 - Jogging\n6 - Fast walk"));
 
+			// single message sent
 			BurnedCaloriesRequest request = BurnedCaloriesRequest.newBuilder().setAge(age).setWeight(weight)
 					.setHeight(height).setGender(gender).setDuration(duration).setActivity(activity).build();
 
+			// single response obtained
 			BurnedCaloriesResponse response = runningControlBlockingStub.burnedCalories(request);
+			
+			// formatting
 			DecimalFormat numberFormat = new DecimalFormat("#.00");
 			JOptionPane.showMessageDialog(dialog,
 					"Your caloric consuption is " + numberFormat.format(response.getBurnedCalories()));
@@ -381,20 +381,6 @@ public class ClientGUI implements ActionListener{
 				else
 					JOptionPane.showMessageDialog(dialog, "Wrong input...");
 			} while (!exerciseIsOver.toUpperCase().equals("OVER"));
-			
-			/*do {
-				try {
-					Thread.sleep(2500);
-				} catch (InterruptedException e) {
-					System.out.println("Exercise Time has been interrupted...");
-				}
-				
-				exerciseInProgress = JOptionPane.showInputDialog("Are you still working out? (Yes or No)");
-				if (exerciseInProgress.toUpperCase().equals("NO"))
-					break;
-				
-			} while(exerciseInProgress.toUpperCase().equals("YES"));*/
-
 		}
 		else
 			JOptionPane.showMessageDialog(dialog, "Invalid entry");

@@ -13,21 +13,25 @@ service HealthControl {
 	rpc ExerciseZoneRateLevel (ExerciseZoneRequest) returns (stream ExerciseZoneResponse) {}
 }
 
+// data sent from client to server
 message TemperatureLevelRequest {
 	double temperature = 1;
 }
 
+// data sent from server to client
 message TemperatureResponse {
 	int32 belowTemperature = 1;
 	int32 averageTemperature = 2;
 	int32 aboveTemperature = 3;
 }
 
+// client to server
 message ExerciseZoneRequest {
 	int32 age = 1;
 	int32 restingHeartRate = 2;
 }
 
+// server to client
 message ExerciseZoneResponse {
 	string fatBurnValue = 1;
 	string cardioValue = 2;

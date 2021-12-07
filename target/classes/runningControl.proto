@@ -13,6 +13,7 @@ service RunningControl {
 	rpc ExerciseTime (stream ExerciseTimeRequest) returns (ExerciseTimeResponse) {}
 }
 
+// from client to server
 message BurnedCaloriesRequest {
 	int32 age = 1;
 	int32 weight = 2;
@@ -22,14 +23,17 @@ message BurnedCaloriesRequest {
 	int32 activity = 6;
 }
 
+// from server to client
 message BurnedCaloriesResponse {
 	double burnedCalories = 1;
 }
 
+// from client to server
 message ExerciseTimeRequest {
 	bool exerciseTimeSignal = 1;
 }
 
+// from server to client
 message ExerciseTimeResponse {
 	string exerciseTimeResponse = 1;
 }

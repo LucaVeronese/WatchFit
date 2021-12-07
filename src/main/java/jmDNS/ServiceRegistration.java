@@ -20,13 +20,11 @@ public class ServiceRegistration {
 			Thread.sleep(15000);
 			
 			System.out.println("Service registered");
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Service was interrupted... error occured!");
+		} catch (IOException e) {
+			System.out.println("Service was not registered successfully...");
 		}
 	}
 
