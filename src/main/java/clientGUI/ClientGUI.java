@@ -279,7 +279,10 @@ public class ClientGUI implements ActionListener{
 
 				@Override
 				public void onNext(TemperatureResponse value) {
-					JOptionPane.showMessageDialog(null, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());
+					//JOptionPane.showMessageDialog(null, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());
+					
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());
 				}
 
 				@Override
@@ -368,14 +371,14 @@ public class ClientGUI implements ActionListener{
 		
 		StreamObserver<ExerciseTimeRequest> requestObserver = runningControlStub.exerciseTime(responseObserver);
 		
-		String answer = JOptionPane.showInputDialog("Please enter 'Start' when you want to begin your workout!");
+		String answer = JOptionPane.showInputDialog("Please type 'Start' when you want to begin your workout!");
 		if (answer.toUpperCase().equals("START")) {
 			
 			String exerciseIsOver;
 			requestObserver.onNext(ExerciseTimeRequest.newBuilder().setExerciseTimeSignal(true).build());
 			
 			do {
-				exerciseIsOver = JOptionPane.showInputDialog("Enter 'Over' when you are done");
+				exerciseIsOver = JOptionPane.showInputDialog("Type 'Over' when you are done");
 				if (exerciseIsOver.toUpperCase().equals("OVER"))
 				{
 					requestObserver.onNext(ExerciseTimeRequest.newBuilder().setExerciseTimeSignal(false).build());
