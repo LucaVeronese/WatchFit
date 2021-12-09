@@ -122,6 +122,8 @@ public class ClientGUI implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
+		
+		dialog.setAlwaysOnTop(true); 
 
 		ClientGUI gui = new ClientGUI();
 
@@ -202,7 +204,7 @@ public class ClientGUI implements ActionListener{
 			
 			try {
 				channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException e2) {
 				System.out.println("Service 2 was interrupted... error occured!");
 			}
 			
@@ -222,7 +224,7 @@ public class ClientGUI implements ActionListener{
 			
 			try {
 				channelRunningControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException e3) {
 				System.out.println("Service 3 was interrupted... error occured!");
 			}
 
@@ -242,7 +244,7 @@ public class ClientGUI implements ActionListener{
 			
 			try {
 				channelRunningControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException e4) {
 				System.out.println("Service 4 was interrupted... error occured!");
 			}
 		
@@ -277,7 +279,7 @@ public class ClientGUI implements ActionListener{
 
 				@Override
 				public void onNext(TemperatureResponse value) {
-					JOptionPane.showMessageDialog(dialog, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());		 
+					JOptionPane.showMessageDialog(null, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());
 				}
 
 				@Override
@@ -288,7 +290,7 @@ public class ClientGUI implements ActionListener{
 
 				@Override
 				public void onCompleted() {
-					JOptionPane.showMessageDialog(dialog, "Application has no more data to show...");
+					JOptionPane.showMessageDialog(null, "Application has no more data to show...");
 				}
 			};
 
@@ -296,17 +298,18 @@ public class ClientGUI implements ActionListener{
 
 			// application will run 15 times
 			int counter = 0;
+			double temperature;
 			do {
 				// we wait to allow the user to read the report
-				if (counter == 5 || counter == 10) {
-					try {
-						Thread.sleep(8000);
+				//if (counter == 5 || counter == 10) {
+				/*try {
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
-				}
-				double temperature = Double.parseDouble(JOptionPane.showInputDialog("Enter your temperature: "));
+					}*/
+				//}
+				temperature = Double.parseDouble(JOptionPane.showInputDialog("Body temperature: "));
 
 				requestObserver.onNext(TemperatureLevelRequest.newBuilder().setTemperature(temperature).build());
 

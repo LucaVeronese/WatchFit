@@ -4,6 +4,10 @@
 package io.runningControl.CA.watchFit;
 
 /**
+ * <pre>
+ * from client to server
+ * </pre>
+ *
  * Protobuf type {@code BurnedCaloriesRequest}
  */
 public  final class BurnedCaloriesRequest extends
@@ -404,6 +408,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * from client to server
+   * </pre>
+   *
    * Protobuf type {@code BurnedCaloriesRequest}
    */
   public static final class Builder extends

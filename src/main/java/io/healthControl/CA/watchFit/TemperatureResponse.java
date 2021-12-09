@@ -4,6 +4,10 @@
 package io.healthControl.CA.watchFit;
 
 /**
+ * <pre>
+ * data sent from server to client
+ * </pre>
+ *
  * Protobuf type {@code TemperatureResponse}
  */
 public  final class TemperatureResponse extends
@@ -298,6 +302,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * data sent from server to client
+   * </pre>
+   *
    * Protobuf type {@code TemperatureResponse}
    */
   public static final class Builder extends

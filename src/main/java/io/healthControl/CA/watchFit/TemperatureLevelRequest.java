@@ -4,6 +4,10 @@
 package io.healthControl.CA.watchFit;
 
 /**
+ * <pre>
+ * data sent from client to server
+ * </pre>
+ *
  * Protobuf type {@code TemperatureLevelRequest}
  */
 public  final class TemperatureLevelRequest extends
@@ -249,6 +253,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * data sent from client to server
+   * </pre>
+   *
    * Protobuf type {@code TemperatureLevelRequest}
    */
   public static final class Builder extends

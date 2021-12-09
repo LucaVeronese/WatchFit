@@ -4,6 +4,10 @@
 package io.healthControl.CA.watchFit;
 
 /**
+ * <pre>
+ * client to server
+ * </pre>
+ *
  * Protobuf type {@code ExerciseZoneRequest}
  */
 public  final class ExerciseZoneRequest extends
@@ -272,6 +276,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * client to server
+   * </pre>
+   *
    * Protobuf type {@code ExerciseZoneRequest}
    */
   public static final class Builder extends

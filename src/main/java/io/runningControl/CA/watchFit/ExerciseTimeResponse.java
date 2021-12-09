@@ -4,6 +4,10 @@
 package io.runningControl.CA.watchFit;
 
 /**
+ * <pre>
+ * from server to client
+ * </pre>
+ *
  * Protobuf type {@code ExerciseTimeResponse}
  */
 public  final class ExerciseTimeResponse extends
@@ -271,6 +275,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * from server to client
+   * </pre>
+   *
    * Protobuf type {@code ExerciseTimeResponse}
    */
   public static final class Builder extends

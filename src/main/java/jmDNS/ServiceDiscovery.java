@@ -48,14 +48,6 @@ public class ServiceDiscovery {
 			this.port = port;
 		}
 
-		public String getHost() {
-			return host;
-		}
-
-		public void setHost(String host) {
-			this.host = host;
-		}
-
 		public ServiceInfo getServiceInfo() {
 			return serviceInfo;
 		}
