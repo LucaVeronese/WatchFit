@@ -203,7 +203,7 @@ public class ClientGUI implements ActionListener{
 			temperatureReport();
 			
 			try {
-				channelHealthControl.shutdown().awaitTermination(60, TimeUnit.SECONDS);
+				channelHealthControl.shutdown().awaitTermination(80, TimeUnit.SECONDS);
 			} catch (InterruptedException e2) {
 				System.out.println("Service 2 was interrupted... error occured!");
 			}
@@ -279,16 +279,12 @@ public class ClientGUI implements ActionListener{
 
 				@Override
 				public void onNext(TemperatureResponse value) {
-					//JOptionPane.showMessageDialog(null, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());
-					
-					JFrame frame = new JFrame();
-					JOptionPane.showMessageDialog(frame, "This is today's report on your temperature.\n Average Temp " + value.getAverageTemperature() + "\n Below Temp " + value.getBelowTemperature() + "\n Above Temp " + value.getAboveTemperature());
+					JOptionPane.showMessageDialog(null, "This is today's report on your temperature.\n Average Temperature:  " + value.getAverageTemperature() + "\n Below Temperature: " + value.getBelowTemperature() + "\n Above Temperature: " + value.getAboveTemperature());
 				}
 
 				@Override
 				public void onError(Throwable t) {
-					System.out.println(t.getMessage());
-
+					
 				}
 
 				@Override
@@ -303,20 +299,9 @@ public class ClientGUI implements ActionListener{
 			int counter = 0;
 			double temperature;
 			do {
-				// we wait to allow the user to read the report
-				//if (counter == 5 || counter == 10) {
-				/*try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-				//}
 				temperature = Double.parseDouble(JOptionPane.showInputDialog("Body temperature: "));
-
-				requestObserver.onNext(TemperatureLevelRequest.newBuilder().setTemperature(temperature).build());
-
 				counter++;
+				requestObserver.onNext(TemperatureLevelRequest.newBuilder().setTemperature(temperature).build());
 			} while (counter < 15);
 
 			requestObserver.onCompleted();
